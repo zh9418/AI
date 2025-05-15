@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI试验田 - 探索人工智能的前沿社区</title>
+    <title>AI实验田 - 探索人工智能的前沿社区</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <script>
@@ -29,199 +30,132 @@
             .content-auto {
                 content-visibility: auto;
             }
+
             .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
+
             .card-hover {
                 transition: all 0.3s ease;
             }
+
             .card-hover:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
+
             .animate-float {
                 animation: float 6s ease-in-out infinite;
             }
+
             @keyframes float {
-                0% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
-                100% { transform: translateY(0px); }
+                0% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+
+                100% {
+                    transform: translateY(0px);
+                }
             }
         }
     </style>
 </head>
+
 <body class="font-inter bg-gray-50 text-dark">
 <!-- 导航栏 -->
-<header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+<header id="navbar"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
         <a href="#" class="flex items-center space-x-2">
             <div class="bg-primary text-white h-10 w-10 rounded-lg flex items-center justify-center">
                 <i class="fa-solid fa-robot text-xl"></i>
             </div>
-            <span class="text-xl font-bold text-primary">AI试验田</span>
+            <span class="text-xl font-bold text-primary">AI实验田</span>
         </a>
 
         <!-- 桌面导航 -->
         <nav class="hidden md:flex items-center space-x-8">
-            <a href="#projects" class="text-gray-700 hover:text-primary transition-colors font-medium">项目专栏</a>
-            <a href="#news" class="text-gray-700 hover:text-primary transition-colors font-medium">新闻动态</a>
-            <a href="#progress" class="text-gray-700 hover:text-primary transition-colors font-medium">项目进展</a>
-            <a href="#comments" class="text-gray-700 hover:text-primary transition-colors font-medium">评论互动</a>
+            <a href="#projects"
+               class="text-gray-700 hover:text-primary transition-colors font-medium">AI实验田项目专栏</a>
+            <a href="#news"
+               class="text-gray-700 hover:text-primary transition-colors font-medium">AI行业最新新闻动态</a>
+            <a href="#information"
+               class="text-gray-700 hover:text-primary transition-colors font-medium">AI每周资讯速递</a>
+            <a href="#comments"
+               class="text-gray-700 hover:text-primary transition-colors font-medium">社区互动栏目</a>
         </nav>
 
         <!-- 搜索和用户 -->
         <div class="flex items-center space-x-4">
             <div class="relative hidden md:block">
-                <input type="text" placeholder="搜索项目或文章..." class="py-2 pl-10 pr-4 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-64 transition-all">
+                <input type="text" placeholder="搜索项目或文章..."
+                       class="py-2 pl-10 pr-4 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-64 transition-all">
                 <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
             </div>
-            <button class="md:hidden text-gray-700 focus:outline-none" id="mobile-menu-button">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-            <a href="#" class="hidden md:flex items-center space-x-2">
-                <img src="https://picsum.photos/seed/user123/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover border-2 border-primary">
-                <span class="font-medium">登录</span>
-            </a>
         </div>
     </div>
 
     <!-- 移动端导航菜单 -->
-    <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 invisible">
+    <div id="mobile-menu"
+         class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 invisible">
         <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-            <div class="relative">
-                <input type="text" placeholder="搜索项目或文章..." class="py-2 pl-10 pr-4 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-full transition-all">
-                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-            </div>
-            <a href="#projects" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">项目专栏</a>
-            <a href="#news" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">新闻动态</a>
-            <a href="#progress" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">项目进展</a>
-            <a href="#comments" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">评论互动</a>
+            <a href="#projects"
+               class="text-gray-700 hover:text-primary transition-colors font-medium py-2">AI实验田项目专栏</a>
+            <a href="#news"
+               class="text-gray-700 hover:text-primary transition-colors font-medium py-2">AI行业最新新闻动态</a>
+            <a href="#information"
+               class="text-gray-700 hover:text-primary transition-colors font-medium py-2">AI每周资讯速递</a>
+            <a href="#comments"
+               class="text-gray-700 hover:text-primary transition-colors font-medium py-2">社区互动栏目</a>
             <a href="#" class="flex items-center space-x-2 py-2">
-                <img src="https://picsum.photos/seed/user123/40/40" alt="用户头像" class="w-8 h-8 rounded-full object-cover border-2 border-primary">
-                <span class="font-medium">登录</span>
             </a>
         </div>
     </div>
 </header>
 
-<!-- 英雄区域 -->
-<section class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary/5 to-accent/5">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0">
-                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-dark mb-4">
-                    探索人工智能的<br><span class="text-primary">无限可能</span>
-                </h1>
-                <p class="text-lg text-gray-600 mb-8 max-w-xl">
-                    AI试验田是一个专注于人工智能前沿技术的社区平台，汇聚全球AI开发者、研究者和爱好者，共同探索AI的未来。
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2">
-                        <span>探索项目</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="#news" class="bg-white hover:bg-gray-50 text-primary border border-primary px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2">
-                        <span>最新动态</span>
-                        <i class="fa-solid fa-newspaper"></i>
-                    </a>
-                </div>
-                <div class="mt-10 flex items-center space-x-6">
-                    <div class="flex -space-x-2">
-                        <img src="https://picsum.photos/seed/user1/40/40" alt="用户头像" class="w-10 h-10 rounded-full border-2 border-white">
-                        <img src="https://picsum.photos/seed/user2/40/40" alt="用户头像" class="w-10 h-10 rounded-full border-2 border-white">
-                        <img src="https://picsum.photos/seed/user3/40/40" alt="用户头像" class="w-10 h-10 rounded-full border-2 border-white">
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-primary/10 flex items-center justify-center text-primary font-medium text-xs">
-                            500+
-                        </div>
-                    </div>
-                    <div class="text-sm text-gray-600">
-                        <span class="font-semibold text-dark">500+</span> 活跃用户 ·
-                        <span class="font-semibold text-dark">120+</span> 优质项目
-                    </div>
-                </div>
-            </div>
-            <div class="md:w-1/2 relative">
-                <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl animate-float">
-                    <img src="https://picsum.photos/seed/aihero/800/600" alt="AI技术展示" class="w-full h-auto">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end">
-                        <div class="p-6 text-white">
-                            <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium">热门项目</span>
-                            <h3 class="text-xl font-bold mt-2">GPT-4 应用开发与实践</h3>
-                            <p class="text-white/90 text-sm mt-1">探索大语言模型在各行业的创新应用</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-secondary/20 rounded-full blur-3xl -z-10"></div>
-                <div class="absolute -top-6 -left-6 w-40 h-40 bg-accent/20 rounded-full blur-3xl -z-10"></div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- 数据统计 -->
-<section class="py-12 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center p-6 rounded-xl bg-gray-50">
-                <div class="text-3xl md:text-4xl font-bold text-primary mb-2" id="projectCount">0</div>
-                <p class="text-gray-600">AI项目</p>
-            </div>
-            <div class="text-center p-6 rounded-xl bg-gray-50">
-                <div class="text-3xl md:text-4xl font-bold text-secondary mb-2" id="newsCount">0</div>
-                <p class="text-gray-600">新闻动态</p>
-            </div>
-            <div class="text-center p-6 rounded-xl bg-gray-50">
-                <div class="text-3xl md:text-4xl font-bold text-accent mb-2" id="userCount">0</div>
-                <p class="text-gray-600">社区用户</p>
-            </div>
-            <div class="text-center p-6 rounded-xl bg-gray-50">
-                <div class="text-3xl md:text-4xl font-bold text-dark mb-2" id="commentCount">0</div>
-                <p class="text-gray-600">评论互动</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- AI试验田项目专栏 -->
+<!-- AI实验田项目专栏 -->
 <section id="projects" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
-                <span class="text-primary font-medium">我们的项目</span>
-                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mt-2">AI试验田项目专栏</h2>
+                <span class="text-primary font-medium">我们的AI微项目</span>
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mt-2">AI实验田项目专栏</h2>
                 <p class="text-gray-600 mt-4 max-w-2xl">探索最新、最前沿的人工智能项目，了解技术发展趋势，寻找合作伙伴，共同推动AI技术的创新与应用。</p>
-            </div>
-            <div class="mt-6 md:mt-0">
-                <div class="flex gap-2">
-                    <button class="project-filter-btn active px-4 py-2 rounded-lg bg-primary text-white transition-all" data-filter="all">全部</button>
-                    <button class="project-filter-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all" data-filter="computer-vision">计算机视觉</button>
-                    <button class="project-filter-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all" data-filter="nlp">自然语言处理</button>
-                    <button class="project-filter-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all" data-filter="robotics">机器人技术</button>
-                </div>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- 项目卡片1 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item" data-category="computer-vision">
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item"
+                 data-category="computer-vision">
                 <div class="relative">
-                    <img src="https://picsum.photos/seed/cvproject/600/400" alt="计算机视觉项目" class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/cvproject/600/400" alt="计算机视觉项目"
+                         class="w-full h-48 object-cover">
                     <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded">热门</div>
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-xl font-bold">基于深度学习的医学影像诊断系统</h3>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">计算机视觉</span>
+                        <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">计算机视觉</span>
                     </div>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">该项目利用深度学习技术，开发了一套能够自动识别X光片、CT扫描中的异常情况的医学影像诊断系统，辅助医生进行更准确的诊断。</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <img src="https://picsum.photos/seed/user4/32/32" alt="用户头像" class="w-6 h-6 rounded-full">
+                            <img src="https://picsum.photos/seed/user4/32/32" alt="用户头像"
+                                 class="w-6 h-6 rounded-full">
                             <span class="text-xs text-gray-500">由 张教授 团队开发</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-eye mr-1"></i> 2.4k</span>
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-star mr-1"></i> 156</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i
+                                        class="fa-regular fa-eye mr-1"></i> 2.4k</span>
+                            <span class="text-xs text-gray-500 flex items-center"><i
+                                    class="fa-regular fa-star mr-1"></i> 156</span>
                         </div>
                     </div>
                 </div>
@@ -230,71 +164,88 @@
             <!-- 项目卡片2 -->
             <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item" data-category="nlp">
                 <div class="relative">
-                    <img src="https://picsum.photos/seed/nlpproject/600/400" alt="自然语言处理项目" class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/nlpproject/600/400" alt="自然语言处理项目"
+                         class="w-full h-48 object-cover">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-xl font-bold">多语言智能客服机器人</h3>
-                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">自然语言处理</span>
+                        <span
+                                class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">自然语言处理</span>
                     </div>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">该项目开发了一个支持多语言的智能客服机器人，能够理解用户问题并提供准确回答，可应用于跨境电商、国际呼叫中心等场景。</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <img src="https://picsum.photos/seed/user5/32/32" alt="用户头像" class="w-6 h-6 rounded-full">
+                            <img src="https://picsum.photos/seed/user5/32/32" alt="用户头像"
+                                 class="w-6 h-6 rounded-full">
                             <span class="text-xs text-gray-500">由 李工程师 团队开发</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-eye mr-1"></i> 1.8k</span>
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-star mr-1"></i> 98</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i
+                                        class="fa-regular fa-eye mr-1"></i> 1.8k</span>
+                            <span class="text-xs text-gray-500 flex items-center"><i
+                                    class="fa-regular fa-star mr-1"></i> 98</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- 项目卡片3 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item" data-category="robotics">
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item"
+                 data-category="robotics">
                 <div class="relative">
-                    <img src="https://picsum.photos/seed/robotproject/600/400" alt="机器人技术项目" class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/robotproject/600/400" alt="机器人技术项目"
+                         class="w-full h-48 object-cover">
                     <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">最新</div>
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-xl font-bold">智能物流仓储机器人系统</h3>
-                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">机器人技术</span>
+                        <span
+                                class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">机器人技术</span>
                     </div>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">该项目研发了一套智能仓储机器人系统，能够实现货物的自动识别、分类、存储和检索，提高仓储效率，降低人力成本。</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <img src="https://picsum.photos/seed/user6/32/32" alt="用户头像" class="w-6 h-6 rounded-full">
+                            <img src="https://picsum.photos/seed/user6/32/32" alt="用户头像"
+                                 class="w-6 h-6 rounded-full">
                             <span class="text-xs text-gray-500">由 王博士 团队开发</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-eye mr-1"></i> 1.2k</span>
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-star mr-1"></i> 76</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i
+                                        class="fa-regular fa-eye mr-1"></i> 1.2k</span>
+                            <span class="text-xs text-gray-500 flex items-center"><i
+                                    class="fa-regular fa-star mr-1"></i> 76</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- 项目卡片4 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item" data-category="computer-vision">
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item"
+                 data-category="computer-vision">
                 <div class="relative">
-                    <img src="https://picsum.photos/seed/cvproject2/600/400" alt="计算机视觉项目" class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/cvproject2/600/400" alt="计算机视觉项目"
+                         class="w-full h-48 object-cover">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-xl font-bold">基于视频分析的智能安防系统</h3>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">计算机视觉</span>
+                        <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">计算机视觉</span>
                     </div>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">该项目利用计算机视觉技术开发了一套智能安防系统，能够实时监测异常行为、识别可疑人员，并及时发出警报，提高安全防范能力。</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <img src="https://picsum.photos/seed/user7/32/32" alt="用户头像" class="w-6 h-6 rounded-full">
+                            <img src="https://picsum.photos/seed/user7/32/32" alt="用户头像"
+                                 class="w-6 h-6 rounded-full">
                             <span class="text-xs text-gray-500">由 赵工程师 团队开发</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-eye mr-1"></i> 956</span>
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-star mr-1"></i> 42</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i
+                                        class="fa-regular fa-eye mr-1"></i> 956</span>
+                            <span class="text-xs text-gray-500 flex items-center"><i
+                                    class="fa-regular fa-star mr-1"></i> 42</span>
                         </div>
                     </div>
                 </div>
@@ -303,57 +254,63 @@
             <!-- 项目卡片5 -->
             <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item" data-category="nlp">
                 <div class="relative">
-                    <img src="https://picsum.photos/seed/nlpproject2/600/400" alt="自然语言处理项目" class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/nlpproject2/600/400" alt="自然语言处理项目"
+                         class="w-full h-48 object-cover">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-xl font-bold">智能文档分析与摘要系统</h3>
-                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">自然语言处理</span>
+                        <span
+                                class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">自然语言处理</span>
                     </div>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">该项目开发了一个能够自动分析文档内容并生成摘要的智能系统，可大幅提高信息获取效率，适用于学术研究、企业情报分析等领域。</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <img src="https://picsum.photos/seed/user8/32/32" alt="用户头像" class="w-6 h-6 rounded-full">
+                            <img src="https://picsum.photos/seed/user8/32/32" alt="用户头像"
+                                 class="w-6 h-6 rounded-full">
                             <span class="text-xs text-gray-500">由 陈教授 团队开发</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-eye mr-1"></i> 1.5k</span>
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-star mr-1"></i> 63</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i
+                                        class="fa-regular fa-eye mr-1"></i> 1.5k</span>
+                            <span class="text-xs text-gray-500 flex items-center"><i
+                                    class="fa-regular fa-star mr-1"></i> 63</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- 项目卡片6 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item" data-category="robotics">
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover project-item"
+                 data-category="robotics">
                 <div class="relative">
-                    <img src="https://picsum.photos/seed/robotproject2/600/400" alt="机器人技术项目" class="w-full h-48 object-cover">
+                    <img src="https://picsum.photos/seed/robotproject2/600/400" alt="机器人技术项目"
+                         class="w-full h-48 object-cover">
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-xl font-bold">协作型工业机械臂控制系统</h3>
-                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">机器人技术</span>
+                        <span
+                                class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">机器人技术</span>
                     </div>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">该项目开发了一套新型工业机械臂控制系统，使机械臂能够与人类工人安全协作，实现更灵活的生产流程，提高工业生产的自动化水平。</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <img src="https://picsum.photos/seed/user9/32/32" alt="用户头像" class="w-6 h-6 rounded-full">
+                            <img src="https://picsum.photos/seed/user9/32/32" alt="用户头像"
+                                 class="w-6 h-6 rounded-full">
                             <span class="text-xs text-gray-500">由 林工程师 团队开发</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-eye mr-1"></i> 1.1k</span>
-                            <span class="text-xs text-gray-500 flex items-center"><i class="fa-regular fa-star mr-1"></i> 58</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i
+                                        class="fa-regular fa-eye mr-1"></i> 1.1k</span>
+                            <span class="text-xs text-gray-500 flex items-center"><i
+                                    class="fa-regular fa-star mr-1"></i> 58</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="text-center mt-12">
-            <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-white transition-all">
-                查看更多项目 <i class="fa-solid fa-arrow-right ml-2"></i>
-            </a>
-        </div>
     </div>
 </section>
 
@@ -373,238 +330,134 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- 主要新闻 -->
-            <div class="lg:col-span-2 bg-gray-50 rounded-xl overflow-hidden shadow-md">
-                <div class="relative">
-                    <img src="https://picsum.photos/seed/ainews/1200/600" alt="AI新闻" class="w-full h-80 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                        <div class="p-8 text-white">
-                            <span class="bg-primary/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium">头条</span>
-                            <h3 class="text-2xl font-bold mt-3">OpenAI发布GPT-5，AI能力实现重大突破</h3>
-                            <p class="text-white/80 mt-2 line-clamp-2">OpenAI近日发布了新一代大型语言模型GPT-5，相比前代模型，在多个基准测试中表现出显著提升，能够处理更复杂的任务，理解更微妙的语境。</p>
-                            <div class="flex items-center mt-4">
-                                <img src="https://picsum.photos/seed/reporter1/40/40" alt="作者头像" class="w-10 h-10 rounded-full">
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium">李明远</p>
-                                    <p class="text-xs text-white/70">人工智能专栏记者 · 2小时前</p>
-                                </div>
-                            </div>
-                        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 新闻项1 -->
+            <div
+                    class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
+                <img src="https://picsum.photos/seed/ainews1/300/200" alt="AI新闻"
+                     class="sm:w-28 sm:h-28 object-cover rounded-lg">
+                <div>
+                    <span class="text-xs text-primary font-medium">技术突破</span>
+                    <h3 class="text-lg font-semibold mt-1 line-clamp-2">Google DeepMind发布AlphaFold 3，蛋白质结构预测精度再创新高</h3>
+                    <p class="text-gray-500 text-sm mt-1 line-clamp-2">新一代AI系统能够更准确地预测蛋白质结构，为药物研发和疾病治疗开辟新途径。</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-xs text-gray-400">3小时前</span>
+                        <span class="text-xs text-gray-400 flex items-center"><i
+                                class="fa-regular fa-comment mr-1"></i> 42</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 新闻列表 -->
-            <div class="space-y-6">
-                <!-- 新闻项1 -->
-                <div class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
-                    <img src="https://picsum.photos/seed/ainews1/300/200" alt="AI新闻" class="sm:w-28 sm:h-28 object-cover rounded-lg">
-                    <div>
-                        <span class="text-xs text-primary font-medium">技术突破</span>
-                        <h3 class="text-lg font-semibold mt-1 line-clamp-2">Google DeepMind发布AlphaFold 3，蛋白质结构预测精度再创新高</h3>
-                        <p class="text-gray-500 text-sm mt-1 line-clamp-2">新一代AI系统能够更准确地预测蛋白质结构，为药物研发和疾病治疗开辟新途径。</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <span class="text-xs text-gray-400">3小时前</span>
-                            <span class="text-xs text-gray-400 flex items-center"><i class="fa-regular fa-comment mr-1"></i> 42</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 新闻项2 -->
-                <div class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
-                    <img src="https://picsum.photos/seed/ainews2/300/200" alt="AI新闻" class="sm:w-28 sm:h-28 object-cover rounded-lg">
-                    <div>
-                        <span class="text-xs text-secondary font-medium">行业应用</span>
-                        <h3 class="text-lg font-semibold mt-1 line-clamp-2">特斯拉推出最新自动驾驶系统，AI技术实现重大升级</h3>
-                        <p class="text-gray-500 text-sm mt-1 line-clamp-2">特斯拉最新FSD系统大幅提升了自动驾驶能力，在复杂路况下表现更安全、更智能。</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <span class="text-xs text-gray-400">5小时前</span>
-                            <span class="text-xs text-gray-400 flex items-center"><i class="fa-regular fa-comment mr-1"></i> 78</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 新闻项3 -->
-                <div class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
-                    <img src="https://picsum.photos/seed/ainews3/300/200" alt="AI新闻" class="sm:w-28 sm:h-28 object-cover rounded-lg">
-                    <div>
-                        <span class="text-xs text-accent font-medium">政策法规</span>
-                        <h3 class="text-lg font-semibold mt-1 line-clamp-2">欧盟《人工智能法案》正式生效，全球AI监管迎来新篇章</h3>
-                        <p class="text-gray-500 text-sm mt-1 line-clamp-2">欧盟《人工智能法案》对AI系统的开发和部署设定了严格的规则，旨在确保AI技术的安全和透明。</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <span class="text-xs text-gray-400">昨天</span>
-                            <span class="text-xs text-gray-400 flex items-center"><i class="fa-regular fa-comment mr-1"></i> 124</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 新闻项4 -->
-                <div class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
-                    <img src="https://picsum.photos/seed/ainews4/300/200" alt="AI新闻" class="sm:w-28 sm:h-28 object-cover rounded-lg">
-                    <div>
-                        <span class="text-xs text-dark font-medium">企业动态</span>
-                        <h3 class="text-lg font-semibold mt-1 line-clamp-2">微软宣布投资100亿美元扩大AI研究，加速AGI发展</h3>
-                        <p class="text-gray-500 text-sm mt-1 line-clamp-2">微软计划在未来五年内投入100亿美元用于AI研究，目标是加速通用人工智能(AGI)的发展。</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <span class="text-xs text-gray-400">2天前</span>
-                            <span class="text-xs text-gray-400 flex items-center"><i class="fa-regular fa-comment mr-1"></i> 96</span>
-                        </div>
+            <!-- 新闻项2 -->
+            <div
+                    class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
+                <img src="https://picsum.photos/seed/ainews2/300/200" alt="AI新闻"
+                     class="sm:w-28 sm:h-28 object-cover rounded-lg">
+                <div>
+                    <span class="text-xs text-secondary font-medium">行业应用</span>
+                    <h3 class="text-lg font-semibold mt-1 line-clamp-2">特斯拉推出最新自动驾驶系统，AI技术实现重大升级</h3>
+                    <p class="text-gray-500 text-sm mt-1 line-clamp-2">特斯拉最新FSD系统大幅提升了自动驾驶能力，在复杂路况下表现更安全、更智能。</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-xs text-gray-400">5小时前</span>
+                        <span class="text-xs text-gray-400 flex items-center"><i
+                                class="fa-regular fa-comment mr-1"></i> 78</span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 新闻标签 -->
-        <div class="mt-12 bg-gray-50 rounded-xl p-6">
-            <h3 class="text-xl font-bold mb-4">热门话题</h3>
-            <div class="flex flex-wrap gap-3">
-                <a href="#" class="px-4 py-2 bg-white text-primary rounded-full text-sm font-medium hover:bg-primary hover:text-white transition-all">大语言模型</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">自动驾驶</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">计算机视觉</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">生成式AI</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">AI伦理</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">医疗AI</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">金融科技</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">机器人技术</a>
-                <a href="#" class="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-all">自然语言处理</a>
+            <!-- 新闻项3 -->
+            <div
+                    class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
+                <img src="https://picsum.photos/seed/ainews3/300/200" alt="AI新闻"
+                     class="sm:w-28 sm:h-28 object-cover rounded-lg">
+                <div>
+                    <span class="text-xs text-accent font-medium">政策法规</span>
+                    <h3 class="text-lg font-semibold mt-1 line-clamp-2">欧盟《人工智能法案》正式生效，全球AI监管迎来新篇章</h3>
+                    <p class="text-gray-500 text-sm mt-1 line-clamp-2">欧盟《人工智能法案》对AI系统的开发和部署设定了严格的规则，旨在确保AI技术的安全和透明。</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-xs text-gray-400">昨天</span>
+                        <span class="text-xs text-gray-400 flex items-center"><i
+                                class="fa-regular fa-comment mr-1"></i> 124</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新闻项4 -->
+            <div
+                    class="flex flex-col sm:flex-row gap-4 bg-gray-50 rounded-xl p-4 hover:shadow-md transition-all">
+                <img src="https://picsum.photos/seed/ainews4/300/200" alt="AI新闻"
+                     class="sm:w-28 sm:h-28 object-cover rounded-lg">
+                <div>
+                    <span class="text-xs text-dark font-medium">企业动态</span>
+                    <h3 class="text-lg font-semibold mt-1 line-clamp-2">微软宣布投资100亿美元扩大AI研究，加速AGI发展</h3>
+                    <p class="text-gray-500 text-sm mt-1 line-clamp-2">微软计划在未来五年内投入100亿美元用于AI研究，目标是加速通用人工智能(AGI)的发展。</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-xs text-gray-400">2天前</span>
+                        <span class="text-xs text-gray-400 flex items-center"><i
+                                class="fa-regular fa-comment mr-1"></i> 96</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- AI项目进展双周报展示专栏 -->
-<section id="progress" class="py-16 bg-gray-50">
+<!-- AI每周资讯专栏 -->
+<section id="information" class="py-16 bg-gray-100">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
-                <span class="text-primary font-medium">项目进展</span>
-                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mt-2">AI项目进展双周报</h2>
-                <p class="text-gray-600 mt-4 max-w-2xl">定期更新AI试验田社区内各项目的最新进展，展示开发成果，分享技术挑战与解决方案。</p>
+                <span class="text-primary font-medium">每周资讯动态</span>
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mt-2">AI每周资讯速递</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl">了解每周AI资讯，把握行业最新进展。</p>
             </div>
             <div class="mt-6 md:mt-0">
-                <div class="relative">
-                    <select id="progress-filter" class="appearance-none bg-white border border-gray-300 rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/30">
-                        <option value="all">全部项目</option>
-                        <option value="project1">医学影像诊断系统</option>
-                        <option value="project2">多语言客服机器人</option>
-                        <option value="project3">智能仓储机器人</option>
-                        <option value="project4">智能安防系统</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <i class="fa-solid fa-chevron-down text-xs"></i>
-                    </div>
-                </div>
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+                    查看全部资讯 <i class="fa-solid fa-angle-right ml-1"></i>
+                </a>
             </div>
         </div>
 
-        <!-- 时间线 -->
-        <div class="relative">
-            <!-- 连接线 -->
-            <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 transform md:-translate-x-1/2"></div>
-
-            <!-- 时间点1 -->
-            <div class="mb-12 relative progress-item" data-project="project1">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
-                        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                            <span class="text-xs text-primary font-medium">2025年5月1日 - 2025年5月15日</span>
-                            <h3 class="text-xl font-bold mt-2">医学影像诊断系统</h3>
-                            <p class="text-gray-600 mt-2">完成了肺部X光片的初步检测模型，在测试数据集上的准确率达到了92%。下一步计划是收集更多样本数据，特别是罕见病例，以提高模型的泛化能力。</p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">模型训练</span>
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">数据收集</span>
-                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">准确率92%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2 -translate-y-3"></div>
-                    <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 新闻项1 -->
+            <a href="资讯.html" class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all">
+                <span class="text-xs text-primary font-medium block mb-2">5月第二周资讯</span>
+                <h3 class="text-xl font-bold mb-2">Google强化AI反诈骗技术</h3>
+                <p class="text-gray-600 text-sm mb-4">Google宣布在Chrome、搜索和Android平台推出一系列AI驱动的新诈骗应对措施。其自研的Gemini Nano模型发挥核心作用，可识别并阻止多种在线欺诈行为，如技术支持诈骗等。目前，AI技术检测和阻止的欺诈性网站数量已达三年前的二十倍，针对冒充航空公司客户服务提供商的诈骗活动，成功减少了80%以上。</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-gray-400">3小时前</span>
                 </div>
-            </div>
-
-            <!-- 时间点2 -->
-            <div class="mb-12 relative progress-item" data-project="project2">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
-                    <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2 -translate-y-3"></div>
-                    <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0">
-                        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                            <span class="text-xs text-primary font-medium">2025年4月15日 - 2025年4月30日</span>
-                            <h3 class="text-xl font-bold mt-2">多语言客服机器人</h3>
-                            <p class="text-gray-600 mt-2">完成了英语、中文、日语和韩语的多语言支持，实现了跨语言理解和回答。在内部测试中，对常见问题的回答准确率达到了85%。</p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">多语言支持</span>
-                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">准确率85%</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">内部测试</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 时间点3 -->
-            <div class="mb-12 relative progress-item" data-project="project3">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
-                        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                            <span class="text-xs text-primary font-medium">2025年4月1日 - 2025年4月15日</span>
-                            <h3 class="text-xl font-bold mt-2">智能仓储机器人系统</h3>
-                            <p class="text-gray-600 mt-2">完成了机器人硬件原型的开发和初步调试，实现了自主导航和简单货物搬运功能。下一步将开发更复杂的路径规划算法和货物识别系统。</p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">硬件开发</span>
-                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">自主导航</span>
-                                <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">进行中</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2 -translate-y-3"></div>
-                    <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
-                </div>
-            </div>
-
-            <!-- 时间点4 -->
-            <div class="relative progress-item" data-project="project4">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
-                    <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2 -translate-y-3"></div>
-                    <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0">
-                        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
-                            <span class="text-xs text-primary font-medium">2025年3月15日 - 2025年3月30日</span>
-                            <h3 class="text-xl font-bold mt-2">智能安防系统</h3>
-                            <p class="text-gray-600 mt-2">完成了异常行为检测模块的开发，能够识别奔跑、摔倒、徘徊等行为。在实际场景测试中，对常见异常行为的检测准确率达到了88%。</p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">行为识别</span>
-                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">准确率88%</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">场景测试</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-white transition-all">
-                查看更多项目进展 <i class="fa-solid fa-arrow-right ml-2"></i>
             </a>
+
+            <!-- 新闻项2 -->
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all">
+                <span class="text-xs text-secondary font-medium block mb-2">5月第三周资讯</span>
+                <h3 class="text-xl font-bold mb-2">敬请期待</h3>
+                <p class="text-gray-600 text-sm mb-4"></p>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs text-gray-400">5小时前</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
 
 <!-- 评论互动栏目 -->
 <section id="comments" class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
-                <span class="text-primary font-medium">社区互动</span>
+                <span class="text-primary font-medium">社区互动栏目</span>
                 <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mt-2">评论互动栏目</h2>
                 <p class="text-gray-600 mt-4 max-w-2xl">分享你的观点和想法，与社区成员一起讨论AI技术的发展趋势、应用案例和挑战。</p>
             </div>
             <div class="mt-6 md:mt-0">
                 <div class="flex gap-2">
-                    <button class="comment-sort-btn active px-4 py-2 rounded-lg bg-primary text-white transition-all" data-sort="newest">最新</button>
-                    <button class="comment-sort-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all" data-sort="hottest">最热</button>
+                    <button class="comment-sort-btn active px-4 py-2 rounded-lg bg-primary text-white transition-all"
+                            data-sort="newest">最新</button>
+                    <button class="comment-sort-btn px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all"
+                            data-sort="hottest">最热</button>
                 </div>
             </div>
         </div>
@@ -613,9 +466,12 @@
         <div class="bg-gray-50 rounded-xl p-6 mb-10">
             <h3 class="text-xl font-bold mb-4">发表评论</h3>
             <div class="flex gap-4">
-                <img src="https://picsum.photos/seed/user10/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
+                <img src="https://picsum.photos/seed/user10/64/64" alt="用户头像"
+                     class="w-12 h-12 rounded-full">
                 <div class="flex-1">
-                    <textarea id="comment-input" class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" rows="4" placeholder="分享你的观点..."></textarea>
+                        <textarea id="comment-input"
+                                  class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
+                                  rows="4" placeholder="分享你的观点..."></textarea>
                     <div class="flex justify-between items-center mt-4">
                         <div class="flex items-center space-x-3">
                             <button class="text-gray-500 hover:text-primary transition-colors">
@@ -628,7 +484,8 @@
                                 <i class="fa-regular fa-smile text-xl"></i>
                             </button>
                         </div>
-                        <button id="submit-comment" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-medium transition-all">
+                        <button id="submit-comment"
+                                class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-medium transition-all">
                             发布评论
                         </button>
                     </div>
@@ -641,7 +498,8 @@
             <!-- 评论1 -->
             <div class="bg-gray-50 rounded-xl p-6 comment-item" data-timestamp="1683878400">
                 <div class="flex gap-4">
-                    <img src="https://picsum.photos/seed/user11/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
+                    <img src="https://picsum.photos/seed/user11/64/64" alt="用户头像"
+                         class="w-12 h-12 rounded-full">
                     <div class="flex-1">
                         <div class="flex justify-between items-start">
                             <div>
@@ -655,11 +513,13 @@
                         <p class="mt-3 text-gray-700">我认为GPT-5的发布将进一步推动AI技术的普及和应用，特别是在自然语言处理和生成领域。不过，我们也需要关注其可能带来的伦理和社会问题。</p>
                         <div class="flex items-center justify-between mt-4">
                             <div class="flex items-center space-x-4">
-                                <button class="flex items-center text-gray-500 hover:text-primary transition-colors">
+                                <button
+                                        class="flex items-center text-gray-500 hover:text-primary transition-colors">
                                     <i class="fa-regular fa-thumbs-up mr-1"></i>
                                     <span>42</span>
                                 </button>
-                                <button class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
+                                <button
+                                        class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
                                     <i class="fa-regular fa-comment mr-1"></i>
                                     <span>回复</span>
                                 </button>
@@ -672,11 +532,15 @@
                         <!-- 回复表单 -->
                         <div class="mt-4 hidden reply-form">
                             <div class="flex gap-3">
-                                <img src="https://picsum.photos/seed/user10/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
+                                <img src="https://picsum.photos/seed/user10/40/40" alt="用户头像"
+                                     class="w-8 h-8 rounded-full">
                                 <div class="flex-1">
-                                    <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" rows="2" placeholder="回复 @张小明..."></textarea>
+                                        <textarea
+                                                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
+                                                rows="2" placeholder="回复 @张小明..."></textarea>
                                     <div class="flex justify-end mt-2">
-                                        <button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all">
+                                        <button
+                                                class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all">
                                             回复
                                         </button>
                                     </div>
@@ -688,7 +552,8 @@
                         <div class="mt-4 space-y-4 pl-6 border-l-2 border-gray-200">
                             <!-- 回复1 -->
                             <div class="flex gap-3">
-                                <img src="https://picsum.photos/seed/user12/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
+                                <img src="https://picsum.photos/seed/user12/40/40" alt="用户头像"
+                                     class="w-8 h-8 rounded-full">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-start">
                                         <div>
@@ -701,11 +566,13 @@
                                     </div>
                                     <p class="mt-1 text-gray-700 text-sm">完全同意！特别是在内容生成领域，GPT-5已经展现出了令人惊叹的能力，但同时也引发了关于原创性和版权的讨论。</p>
                                     <div class="flex items-center space-x-3 mt-2">
-                                        <button class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs">
+                                        <button
+                                                class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs">
                                             <i class="fa-regular fa-thumbs-up mr-1"></i>
                                             <span>18</span>
                                         </button>
-                                        <button class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs reply-btn">
+                                        <button
+                                                class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs reply-btn">
                                             <i class="fa-regular fa-comment mr-1"></i>
                                             <span>回复</span>
                                         </button>
@@ -715,7 +582,8 @@
 
                             <!-- 回复2 -->
                             <div class="flex gap-3">
-                                <img src="https://picsum.photos/seed/user13/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
+                                <img src="https://picsum.photos/seed/user13/40/40" alt="用户头像"
+                                     class="w-8 h-8 rounded-full">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-start">
                                         <div>
@@ -728,11 +596,13 @@
                                     </div>
                                     <p class="mt-1 text-gray-700 text-sm">我认为除了伦理问题，我们还应该关注技术滥用的风险。如何确保AI技术只用于有益的目的，是我们需要共同面对的挑战。</p>
                                     <div class="flex items-center space-x-3 mt-2">
-                                        <button class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs">
+                                        <button
+                                                class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs">
                                             <i class="fa-regular fa-thumbs-up mr-1"></i>
                                             <span>12</span>
                                         </button>
-                                        <button class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs reply-btn">
+                                        <button
+                                                class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs reply-btn">
                                             <i class="fa-regular fa-comment mr-1"></i>
                                             <span>回复</span>
                                         </button>
@@ -747,11 +617,12 @@
             <!-- 评论2 -->
             <div class="bg-gray-50 rounded-xl p-6 comment-item" data-timestamp="1683871200">
                 <div class="flex gap-4">
-                    <img src="https://picsum.photos/seed/user14/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
+                    <img src="https://picsum.photos/seed/user14/64/64" alt="用户头像"
+                         class="w-12 h-12 rounded-full">
                     <div class="flex-1">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h4 class="font-semibold">陈静</h4>
+                                <h4 class="font-semibold">小静</h4>
                                 <p class="text-gray-500 text-sm">5小时前</p>
                             </div>
                             <button class="text-gray-400 hover:text-gray-600">
@@ -761,638 +632,24 @@
                         <p class="mt-3 text-gray-700">有人尝试过将GPT-4应用于实际项目中吗？我正在考虑用它开发一个智能助手应用，但不确定它的性能和稳定性如何。希望能听到一些实际经验分享。</p>
                         <div class="flex items-center justify-between mt-4">
                             <div class="flex items-center space-x-4">
-                                <button class="flex items-center text-gray-500 hover:text-primary transition-colors">
+                                <button
+                                        class="flex items-center text-gray-500 hover:text-primary transition-colors">
                                     <i class="fa-regular fa-thumbs-up mr-1"></i>
                                     <span>36</span>
                                 </button>
-                                <button class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
+                                <button
+                                        class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
                                     <i class="fa-regular fa-comment mr-1"></i>
                                     <span>回复</span>
                                 </button>
                             </div>
-                            <button class="text-gray-500 hover:text-primary transition-colors">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </button>
-                        </div>
-
-                        <!-- 回复表单 -->
-                        <div class="mt-4 hidden reply-form">
-                            <div class="flex gap-3">
-                                <img src="https://picsum.photos/seed/user10/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
-                                <div class="flex-1">
-                                    <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" rows="2" placeholder="回复 @陈静..."></textarea>
-                                    <div class="flex justify-end mt-2">
-                                        <button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all">
-                                            回复
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 回复列表 -->
-                        <div class="mt-4 space-y-4 pl-6 border-l-2 border-gray-200">
-                            <!-- 回复1 -->
-                            <div class="flex gap-3">
-                                <img src="https://picsum.photos/seed/user15/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start">
-                                        <div>
-                                            <h5 class="font-medium text-sm">赵刚</h5>
-                                            <p class="text-gray-500 text-xs">3小时前</p>
-                                        </div>
-                                        <button class="text-gray-400 hover:text-gray-600">
-                                            <i class="fa-ellipsis-h"></i>
-                                        </button>
-                                    </div>
-                                    <p class="mt-1 text-gray-700 text-sm">我团队最近开发了一个基于GPT-4的客服系统，整体效果还不错。不过要注意API调用限制和响应时间问题，在高并发情况下可能会有性能瓶颈。</p>
-                                    <div class="flex items-center space-x-3 mt-2">
-                                        <button class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs">
-                                            <i class="fa-regular fa-thumbs-up mr-1"></i>
-                                            <span>24</span>
-                                        </button>
-                                        <button class="flex items-center text-gray-500 hover:text-primary transition-colors text-xs reply-btn">
-                                            <i class="fa-regular fa-comment mr-1"></i>
-                                            <span>回复</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- 评论3 -->
-            <div class="bg-gray-50 rounded-xl p-6 comment-item" data-timestamp="1683864000">
-                <div class="flex gap-4">
-                    <img src="https://picsum.photos/seed/user16/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-semibold">刘伟</h4>
-                                <p class="text-gray-500 text-sm">8小时前</p>
-                            </div>
-                            <button class="text-gray-400 hover:text-gray-600">
-                                <i class="fa-ellipsis-h"></i>
-                            </button>
-                        </div>
-                        <p class="mt-3 text-gray-700">欧盟《人工智能法案》的出台标志着全球AI监管进入了新阶段。这对于AI企业来说既是挑战也是机遇，合规的企业将获得更多信任和市场机会。</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center space-x-4">
-                                <button class="flex items-center text-gray-500 hover:text-primary transition-colors">
-                                    <i class="fa-regular fa-thumbs-up mr-1"></i>
-                                    <span>58</span>
-                                </button>
-                                <button class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
-                                    <i class="fa-regular fa-comment mr-1"></i>
-                                    <span>回复</span>
-                                </button>
-                            </div>
-                            <button class="text-gray-500 hover:text-primary transition-colors">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </button>
-                        </div>
-
-                        <!-- 回复表单 -->
-                        <div class="mt-4 hidden reply-form">
-                            <div class="flex gap-3">
-                                <img src="https://picsum.photos/seed/user10/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
-                                <div class="flex-1">
-                                    <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" rows="2" placeholder="回复 @刘伟..."></textarea>
-                                    <div class="flex justify-end mt-2">
-                                        <button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all">
-                                            回复
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mt-12">
-            <button id="load-more-comments" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-all">
-                加载更多评论 <i class="fa-solid fa-angle-down ml-2"></i>
-            </button>
-        </div>
-    </div>
-</section>
-
-<!-- 订阅区域 -->
-<section class="py-16 bg-gradient-to-br from-primary to-accent text-white">
-    <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">订阅AI试验田社区双周报</h2>
-            <p class="text-white/80 mb-8">定期获取AI领域最新动态、技术进展和社区活动信息，不错过任何重要资讯。</p>
-            <div class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
-                <input type="email" placeholder="输入你的邮箱地址" class="flex-1 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 text-gray-800">
-                <button class="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-white/90 transition-all shadow-lg shadow-black/10">
-                    立即订阅
-                </button>
-            </div>
-            <p class="text-white/60 text-sm mt-4">我们尊重你的隐私，绝不会向第三方分享你的信息。</p>
-        </div>
-    </div>
-</section>
-
-<!-- 页脚 -->
-<footer class="bg-dark text-white pt-16 pb-8">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            <div>
-                <div class="flex items-center space-x-2 mb-6">
-                    <div class="bg-white text-primary h-10 w-10 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-robot text-xl"></i>
-                    </div>
-                    <span class="text-xl font-bold">AI试验田</span>
-                </div>
-                <p class="text-gray-400 mb-6">探索人工智能的无限可能，连接全球AI开发者、研究者和爱好者的社区平台。</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fa-brands fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fa-brands fa-github text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fa-brands fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fa-brands fa-youtube text-xl"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-lg font-semibold mb-6">快速链接</h3>
-                <ul class="space-y-3">
-                    <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">项目专栏</a></li>
-                    <li><a href="#news" class="text-gray-400 hover:text-white transition-colors">新闻动态</a></li>
-                    <li><a href="#progress" class="text-gray-400 hover:text-white transition-colors">项目进展</a></li>
-                    <li><a href="#comments" class="text-gray-400 hover:text-white transition-colors">评论互动</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">关于我们</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-lg font-semibold mb-6">资源中心</h3>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AI技术教程</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">开发文档</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">开源项目</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">数据集</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">研究论文</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">社区活动</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-lg font-semibold mb-6">联系我们</h3>
-                <ul class="space-y-3">
-                    <li class="flex items-start">
-                        <i class="fa-solid fa-map-marker-alt mt-1 mr-3 text-primary"></i>
-                        <span class="text-gray-400">北京市海淀区中关村科技园区</span>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fa-solid fa-envelope mr-3 text-primary"></i>
-                        <a href="mailto:contact@ai-experiment.com" class="text-gray-400 hover:text-white transition-colors">contact@ai-experiment.com</a>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fa-solid fa-phone mr-3 text-primary"></i>
-                        <a href="tel:+8610123456789" class="text-gray-400 hover:text-white transition-colors">+86 (10) 1234-5678</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="border-t border-gray-800 pt-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 AI试验田社区. 保留所有权利.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">隐私政策</a>
-                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">使用条款</a>
-                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie政策</a>
                 </div>
             </div>
         </div>
     </div>
-</footer>
+</section>
+</body>
 
-<!-- JavaScript -->
-<script>
-    // 导航栏滚动效果
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('py-2', 'shadow-md');
-            navbar.classList.remove('py-3', 'shadow-sm');
-        } else {
-            navbar.classList.add('py-3', 'shadow-sm');
-            navbar.classList.remove('py-2', 'shadow-md');
-        }
-    });
-
-    // 移动端菜单
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileMenuButton.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('invisible')) {
-            mobileMenu.classList.remove('invisible', '-translate-y-full', 'opacity-0');
-            mobileMenu.classList.add('translate-y-0', 'opacity-100');
-            mobileMenuButton.innerHTML = '<i class="fa-solid fa-xmark text-xl"></i>';
-        } else {
-            mobileMenu.classList.add('invisible', '-translate-y-full', 'opacity-0');
-            mobileMenu.classList.remove('translate-y-0', 'opacity-100');
-            mobileMenuButton.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-        }
-    });
-
-    // 项目过滤
-    const projectFilterButtons = document.querySelectorAll('.project-filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-
-    projectFilterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // 移除所有按钮的活跃状态
-            projectFilterButtons.forEach(btn => {
-                btn.classList.remove('active', 'bg-primary', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-gray-100');
-            });
-
-            // 添加当前按钮的活跃状态
-            button.classList.add('active', 'bg-primary', 'text-white');
-            button.classList.remove('bg-white', 'text-gray-700', 'hover:bg-gray-100');
-
-            const filter = button.getAttribute('data-filter');
-
-            // 过滤项目
-            projectItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // 项目进展过滤
-    const progressFilter = document.getElementById('progress-filter');
-    const progressItems = document.querySelectorAll('.progress-item');
-
-    progressFilter.addEventListener('change', () => {
-        const filter = progressFilter.value;
-
-        progressItems.forEach(item => {
-            if (filter === 'all' || item.getAttribute('data-project') === filter) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-
-    // 评论排序
-    const commentSortButtons = document.querySelectorAll('.comment-sort-btn');
-    const commentItems = document.querySelectorAll('.comment-item');
-
-    commentSortButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // 移除所有按钮的活跃状态
-            commentSortButtons.forEach(btn => {
-                btn.classList.remove('active', 'bg-primary', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-gray-100');
-            });
-
-            // 添加当前按钮的活跃状态
-            button.classList.add('active', 'bg-primary', 'text-white');
-            button.classList.remove('bg-white', 'text-gray-700', 'hover:bg-gray-100');
-
-            const sort = button.getAttribute('data-sort');
-            const commentsContainer = document.getElementById('comments-container');
-
-            // 复制评论元素
-            const commentsArray = Array.from(commentItems);
-
-            // 排序
-            if (sort === 'newest') {
-                commentsArray.sort((a, b) => {
-                    return b.getAttribute('data-timestamp') - a.getAttribute('data-timestamp');
-                });
-            } else if (sort === 'hottest') {
-                // 这里简化为按点赞数排序，实际应用中应根据真实点赞数据排序
-                commentsArray.sort((a, b) => {
-                    const aLikes = parseInt(a.querySelector('.fa-thumbs-up').nextElementSibling.textContent);
-                    const bLikes = parseInt(b.querySelector('.fa-thumbs-up').nextElementSibling.textContent);
-                    return bLikes - aLikes;
-                });
-            }
-
-            // 清空容器并添加排序后的评论
-            commentsContainer.innerHTML = '';
-            commentsArray.forEach(comment => {
-                commentsContainer.appendChild(comment);
-            });
-        });
-    });
-
-    // 回复按钮
-    const replyButtons = document.querySelectorAll('.reply-btn');
-    const replyButtons = document.querySelectorAll('.reply-btn');
-
-    replyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const commentItem = button.closest('.comment-item');
-            const replyForm = commentItem.querySelector('.reply-form');
-
-            // 切换回复表单显示状态
-            if (replyForm.classList.contains('hidden')) {
-                replyForm.classList.remove('hidden');
-                // 自动聚焦到文本框
-                replyForm.querySelector('textarea').focus();
-            } else {
-                replyForm.classList.add('hidden');
-            }
-        });
-    });
-
-    // 提交评论
-    const submitCommentButton = document.getElementById('submit-comment');
-    const commentInput = document.getElementById('comment-input');
-    const commentsContainer = document.getElementById('comments-container');
-
-    submitCommentButton.addEventListener('click', () => {
-        const commentText = commentInput.value.trim();
-
-        if (commentText) {
-            // 创建新评论元素
-            const newComment = document.createElement('div');
-            newComment.className = 'bg-gray-50 rounded-xl p-6 comment-item';
-            newComment.setAttribute('data-timestamp', Math.floor(Date.now() / 1000));
-            newComment.innerHTML = `
-                    <div class="flex gap-4">
-                        <img src="https://picsum.photos/seed/user10/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-semibold">你</h4>
-                                    <p class="text-gray-500 text-sm">刚刚</p>
-                                </div>
-                                <button class="text-gray-400 hover:text-gray-600">
-                                    <i class="fa-ellipsis-h"></i>
-                                </button>
-                            </div>
-                            <p class="mt-3 text-gray-700">${commentText}</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <div class="flex items-center space-x-4">
-                                    <button class="flex items-center text-gray-500 hover:text-primary transition-colors">
-                                        <i class="fa-regular fa-thumbs-up mr-1"></i>
-                                        <span>0</span>
-                                    </button>
-                                    <button class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
-                                        <i class="fa-regular fa-comment mr-1"></i>
-                                        <span>回复</span>
-                                    </button>
-                                </div>
-                                <button class="text-gray-500 hover:text-primary transition-colors">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-
-                            <!-- 回复表单 -->
-                            <div class="mt-4 hidden reply-form">
-                                <div class="flex gap-3">
-                                    <img src="https://picsum.photos/seed/user10/40/40" alt="用户头像" class="w-8 h-8 rounded-full">
-                                    <div class="flex-1">
-                                        <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" rows="2" placeholder="回复..."></textarea>
-                                        <div class="flex justify-end mt-2">
-                                            <button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all">
-                                                回复
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-            // 添加到容器顶部
-            commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
-
-            // 清空输入框
-            commentInput.value = '';
-
-            // 为新评论的回复按钮添加事件监听
-            const newReplyButton = newComment.querySelector('.reply-btn');
-            newReplyButton.addEventListener('click', () => {
-                const replyForm = newComment.querySelector('.reply-form');
-
-                if (replyForm.classList.contains('hidden')) {
-                    replyForm.classList.remove('hidden');
-                    replyForm.querySelector('textarea').focus();
-                } else {
-                    replyForm.classList.add('hidden');
-                }
-            });
-
-            // 显示成功提示（这里简化为控制台输出）
-            console.log('评论提交成功');
-        } else {
-            // 显示错误提示（这里简化为控制台输出）
-            console.log('评论内容不能为空');
-        }
-    });
-
-    // 加载更多评论
-    const loadMoreCommentsButton = document.getElementById('load-more-comments');
-
-    loadMoreCommentsButton.addEventListener('click', () => {
-        // 模拟加载更多评论
-        loadMoreCommentsButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> 加载中...';
-
-        setTimeout(() => {
-            // 创建新评论
-            const newComment1 = document.createElement('div');
-            newComment1.className = 'bg-gray-50 rounded-xl p-6 comment-item';
-            newComment1.setAttribute('data-timestamp', Math.floor(Date.now() / 1000) - 86400); // 1天前
-            newComment1.innerHTML = `
-                    <div class="flex gap-4">
-                        <img src="https://picsum.photos/seed/user17/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-semibold">孙晓</h4>
-                                    <p class="text-gray-500 text-sm">1天前</p>
-                                </div>
-                                <button class="text-gray-400 hover:text-gray-600">
-                                    <i class="fa-ellipsis-h"></i>
-                                </button>
-                            </div>
-                            <p class="mt-3 text-gray-700">AI在医疗领域的应用前景非常广阔，特别是在影像诊断和药物研发方面。希望能看到更多实际落地的案例。</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <div class="flex items-center space-x-4">
-                                    <button class="flex items-center text-gray-500 hover:text-primary transition-colors">
-                                        <i class="fa-regular fa-thumbs-up mr-1"></i>
-                                        <span>28</span>
-                                    </button>
-                                    <button class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
-                                        <i class="fa-regular fa-comment mr-1"></i>
-                                        <span>回复</span>
-                                    </button>
-                                </div>
-                                <button class="text-gray-500 hover:text-primary transition-colors">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-            const newComment2 = document.createElement('div');
-            newComment2.className = 'bg-gray-50 rounded-xl p-6 comment-item';
-            newComment2.setAttribute('data-timestamp', Math.floor(Date.now() / 1000) - 172800); // 2天前
-            newComment2.innerHTML = `
-                    <div class="flex gap-4">
-                        <img src="https://picsum.photos/seed/user18/64/64" alt="用户头像" class="w-12 h-12 rounded-full">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-semibold">周琳</h4>
-                                    <p class="text-gray-500 text-sm">2天前</p>
-                                </div>
-                                <button class="text-gray-400 hover:text-gray-600">
-                                    <i class="fa-ellipsis-h"></i>
-                                </button>
-                            </div>
-                            <p class="mt-3 text-gray-700">智能仓储机器人系统听起来很有前景，不知道实际部署成本如何？有没有已经应用的案例可以参考？</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <div class="flex items-center space-x-4">
-                                    <button class="flex items-center text-gray-500 hover:text-primary transition-colors">
-                                        <i class="fa-regular fa-thumbs-up mr-1"></i>
-                                        <span>22</span>
-                                    </button>
-                                    <button class="flex items-center text-gray-500 hover:text-primary transition-colors reply-btn">
-                                        <i class="fa-regular fa-comment mr-1"></i>
-                                        <span>回复</span>
-                                    </button>
-                                </div>
-                                <button class="text-gray-500 hover:text-primary transition-colors">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-            // 添加到容器
-            commentsContainer.appendChild(newComment1);
-            commentsContainer.appendChild(newComment2);
-
-            // 为新评论的回复按钮添加事件监听
-            const newReplyButtons = newComment1.querySelectorAll('.reply-btn');
-            newReplyButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const replyForm = button.closest('.comment-item').querySelector('.reply-form');
-
-                    if (replyForm.classList.contains('hidden')) {
-                        replyForm.classList.remove('hidden');
-                        replyForm.querySelector('textarea').focus();
-                    } else {
-                        replyForm.classList.add('hidden');
-                    }
-                });
-            });
-
-            // 恢复按钮文本
-            loadMoreCommentsButton.innerHTML = '加载更多评论 <i class="fa-solid fa-angle-down ml-2"></i>';
-
-            // 如果评论数量达到6条，隐藏加载更多按钮
-            if (document.querySelectorAll('.comment-item').length >= 6) {
-                loadMoreCommentsButton.style.display = 'none';
-            }
-        }, 1000);
-    });
-
-    // 数字动画
-    function animateValue(id, start, end, duration) {
-        const obj = document.getElementById(id);
-        const suffix = obj.innerText.replace(/[0-9]/g, '');
-        const range = end - start;
-        const minTimer = 50;
-        let stepTime = Math.abs(Math.floor(duration / range));
-
-        stepTime = Math.max(stepTime, minTimer);
-
-        let startTime = new Date().getTime();
-        let endTime = startTime + duration;
-        let timer;
-
-        function run() {
-            let now = new Date().getTime();
-            let remaining = Math.max((endTime - now) / duration, 0);
-            let value = Math.round(end - (remaining * range));
-            obj.innerHTML = value + suffix;
-            if (value == end) {
-                clearInterval(timer);
-            }
-        }
-
-        timer = setInterval(run, stepTime);
-        run();
-    }
-
-    // 监听元素是否进入视口
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (entry.target.id === 'projectCount') {
-                    animateValue('projectCount', 0, 120, 2000);
-                } else if (entry.target.id === 'newsCount') {
-                    animateValue('newsCount', 0, 356, 2000);
-                } else if (entry.target.id === 'userCount') {
-                    animateValue('userCount', 0, 500, 2000);
-                } else if (entry.target.id === 'commentCount') {
-                    animateValue('commentCount', 0, 1258, 2000);
-                }
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    // 观察计数器元素
-    observer.observe(document.getElementById('projectCount'));
-    observer.observe(document.getElementById('newsCount'));
-    observer.observe(document.getElementById('userCount'));
-    observer.observe(document.getElementById('commentCount'));
-
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                // 关闭移动菜单（如果打开）
-                if (!mobileMenu.classList.contains('invisible')) {
-                    mobileMenu.classList.add('invisible', '-translate-y-full', 'opacity-0');
-                    mobileMenu.classList.remove('translate-y-0', 'opacity-100');
-                    mobileMenuButton.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-                }
-
-                // 滚动到目标位置
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-</script>
+</html>
