@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI实验田 - 全部资讯动态</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+
+                100% {
+                    transform: translateY(0px);
+                }
+            }
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-gray-50 text-dark">
+<!-- 导航栏 -->
+<header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="#" class="flex items-center space-x-2">
+            <div class="bg-primary text-white h-10 w-10 rounded-lg flex items-center justify-center shadow-md">
+                <i class="fa-solid fa-robot text-xl"></i>
+            </div>
+            <span class="text-xl font-bold text-primary">AI实验田</span>
+        </a>
+
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+            <a href="index.html#projects" class="text-gray-700 hover:text-primary transition-colors font-medium">
+                <i class="fa-solid fa-project-diagram mr-1"></i>项目专栏
+            </a>
+            <a href="index.html#news" class="text-gray-700 hover:text-primary transition-colors font-medium">
+                <i class="fa-solid fa-newspaper mr-1"></i>新闻动态
+            </a>
+            <a href="index.html#information" class="text-primary font-semibold border-b-2 border-primary">
+                <i class="fa-solid fa-info-circle mr-1"></i>资讯速递
+            </a>
+            <a href="index.html#comments" class="text-gray-700 hover:text-primary transition-colors font-medium">
+                <i class="fa-solid fa-comments mr-1"></i>社区互动
+            </a>
+        </nav>
+
+        <!-- 移动端菜单按钮 -->
+        <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+
+        <!-- 搜索框 -->
+        <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+                <input type="text" placeholder="搜索资讯..."
+                       class="py-2 pl-10 pr-4 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-64 transition-all text-sm">
+                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 invisible">
+        <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+            <div class="relative">
+                <input type="text" placeholder="搜索资讯..."
+                       class="py-2 pl-10 pr-4 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/30 w-full transition-all text-sm">
+                <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+            <a href="index.html#projects" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+                <i class="fa-solid fa-project-diagram mr-1"></i>项目专栏
+            </a>
+            <a href="index.html#news" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+                <i class="fa-solid fa-newspaper mr-1"></i>新闻动态
+            </a>
+            <a href="index.html#information" class="text-primary font-semibold py-2">
+                <i class="fa-solid fa-info-circle mr-1"></i>资讯速递
+            </a>
+            <a href="index.html#comments" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+                <i class="fa-solid fa-comments mr-1"></i>社区互动
+            </a>
+        </div>
+    </div>
+</header>
+
+
+<!-- AI行业全部资讯动态 -->
+<section id="news-all" class="py-24 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+            <div>
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mt-2">AI行业全部资讯动态</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl">了解人工智能领域的最新发展趋势、研究成果和行业应用案例，把握技术发展脉搏。</p>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <!-- 资讯项1 -->
+            <a href="information1.html" class="flex items-center justify-between bg-gray-50 rounded-lg p-4 hover:shadow-md transition-all">
+                <div>
+                    <span class="text-xs text-primary font-medium">5月第二周资讯</span>
+                    <h3 class="text-lg font-semibold mt-1">Google强化AI反诈骗技术</h3>
+                    <p class="text-gray-500 text-sm mt-1">Google宣布在Chrome、搜索和Android平台推出一系列AI驱动的新诈骗应对措施。其自研的Gemini Nano模型发挥核心作用，可识别并阻止多种在线欺诈行为，如技术支持诈骗等。目前，AI技术检测和阻止的欺诈性网站数量已达三年前的二十倍，针对冒充航空公司客户服务提供商的诈骗活动，成功减少了80%以上。
+
+                        此外，Chrome浏览器在Android系统上引入新警告功能，借助设备上的机器学习模型，及时提醒用户防范恶意网站的不良通知。这一系列举措不仅展现了AI技术的创新能力提升，也凸显了其在应对网络安全挑战、保护用户权益方面的关键作用。</p>
+                </div>
+                <span class="text-xs text-gray-400">3小时前</span>
+            </a>
+
+            <!-- 资讯项2 -->
+            <a href="#" class="flex items-center justify-between bg-gray-50 rounded-lg p-4 hover:shadow-md transition-all">
+                <div>
+                    <span class="text-xs text-secondary font-medium">5月第三周资讯</span>
+                    <h3 class="text-lg font-semibold mt-1">敬请期待</h3>
+                    <p class="text-gray-500 text-sm mt-1">敬请期待</p>
+                </div>
+                <span class="text-xs text-gray-400">5小时前</span>
+            </a>
+
+            <!-- 资讯项3 -->
+            <a href="#" class="flex items-center justify-between bg-gray-50 rounded-lg p-4 hover:shadow-md transition-all">
+                <div>
+                    <span class="text-xs text-accent font-medium">5月第四周资讯</span>
+                    <h3 class="text-lg font-semibold mt-1">敬请期待</h3>
+                    <p class="text-gray-500 text-sm mt-1">敬请期待</p>
+                </div>
+                <span class="text-xs text-gray-400">昨天</span>
+            </a>
+
+            <!-- 资讯项4 -->
+            <a href="#" class="flex items-center justify-between bg-gray-50 rounded-lg p-4 hover:shadow-md transition-all">
+                <div>
+                    <span class="text-xs text-dark font-medium">6月第一周资讯</span>
+                    <h3 class="text-lg font-semibold mt-1">敬请期待</h3>
+                    <p class="text-gray-500 text-sm mt-1">敬请期待</p>
+                </div>
+                <span class="text-xs text-gray-400">2天前</span>
+            </a>
+
+            <!-- 可添加更多资讯项 -->
+
+        </div>
+        <!-- 分页 -->
+        <div class="mt-12 flex justify-center">
+            <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                    <span class="sr-only">上一页</span>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <a href="#" aria-current="page" class="z-10 bg-primary text-white relative inline-flex items-center px-4 py-2 border border-primary text-sm font-medium">1</a>
+                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">2</a>
+                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">3</a>
+                <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">...</span>
+                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">10</a>
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                    <span class="sr-only">下一页</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- 页脚 -->
+<footer class="bg-dark text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="bg-primary text-white h-10 w-10 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-robot text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">AI实验田</span>
+                </div>
+                <p class="text-gray-400 mb-6">
+                    探索人工智能前沿技术，分享AI领域最新动态和实践经验。
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html#projects" class="text-gray-400 hover:text-white transition-colors">项目专栏</a></li>
+                    <li><a href="index.html#news" class="text-gray-400 hover:text-white transition-colors">新闻动态</a></li>
+                    <li><a href="index.html#information" class="text-gray-400 hover:text-white transition-colors">资讯速递</a></li>
+                    <li><a href="index.html#comments" class="text-gray-400 hover:text-white transition-colors">社区互动</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold mb-4">资源中心</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">技术文档</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">开源项目</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API接口</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AI工具库</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-envelope text-primary mt-1 mr-3"></i>
+                        <span class="text-gray-400">contact@aiexperiment.com</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-phone text-primary mt-1 mr-3"></i>
+                        <span class="text-gray-400">+86 123 4567 8901</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-map-marker text-primary mt-1 mr-3"></i>
+                        <span class="text-gray-400">北京市海淀区中关村大街1号</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+            <p>© 2025 AI实验田. 保留所有权利.</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
