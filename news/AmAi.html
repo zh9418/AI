@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美国商务部废除《AI扩散规则》并加强对华芯片管制 - 钛媒体AGI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#00C19D',
+                        dark: '#1A1A1A',
+                        light: '#F9F9F9',
+                        muted: '#666666'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .article-prose {
+                @apply max-w-4xl mx-auto text-dark/80 leading-relaxed;
+            }
+            .article-prose h2 {
+                @apply text-2xl md:text-3xl font-bold text-dark mt-12 mb-6 scroll-mt-20 border-b border-gray-200 pb-3;
+            }
+            .article-prose h3 {
+                @apply text-xl md:text-2xl font-bold text-dark mt-8 mb-4 scroll-mt-20;
+            }
+            .article-prose p {
+                @apply mb-6;
+            }
+            .article-prose ul {
+                @apply list-disc pl-6 mb-6 space-y-2;
+            }
+            .article-prose ol {
+                @apply list-decimal pl-6 mb-6 space-y-2;
+            }
+            .article-prose a {
+                @apply text-primary hover:underline;
+            }
+            .article-prose blockquote {
+                @apply border-l-4 border-primary pl-4 italic my-6 bg-light rounded-r-lg p-4;
+            }
+            .article-prose img {
+                @apply rounded-lg shadow-md my-8 mx-auto max-w-full transition-transform duration-500 hover:scale-[1.02];
+            }
+            .article-prose table {
+                @apply w-full border-collapse my-8;
+            }
+            .article-prose th, .article-prose td {
+                @apply border border-gray-300 p-3;
+            }
+            .article-prose th {
+                @apply bg-gray-100 font-semibold;
+            }
+            .tech-card {
+                @apply bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1;
+            }
+            .tech-card-icon {
+                @apply text-primary text-3xl mb-4;
+            }
+            .comparison-table {
+                @apply w-full border-collapse my-8;
+            }
+            .comparison-table th, .comparison-table td {
+                @apply border border-gray-300 p-4;
+            }
+            .comparison-table th {
+                @apply bg-gray-100 font-semibold text-center;
+            }
+            .comparison-table td:first-child {
+                @apply font-medium;
+            }
+            .stat-card {
+                @apply bg-light rounded-xl p-6 text-center shadow-sm;
+            }
+            .stat-value {
+                @apply text-3xl font-bold text-primary mb-2;
+            }
+            .stat-label {
+                @apply text-muted;
+            }
+            .demo-card {
+                @apply bg-white rounded-xl overflow-hidden shadow-md mb-6 transition-all duration-300 hover:shadow-lg;
+            }
+            .demo-card img {
+                @apply w-full h-64 object-cover;
+            }
+            .demo-card .content {
+                @apply p-6;
+            }
+            .feature-item {
+                @apply flex items-start mb-4;
+            }
+            .feature-item i {
+                @apply text-primary mt-1 mr-3;
+            }
+            .audio-sample {
+                @apply bg-light rounded-lg p-4 mb-6 border-l-4 border-accent;
+            }
+            .audio-sample p {
+                @apply mb-2 font-medium;
+            }
+            .policy-card {
+                @apply bg-white rounded-xl p-6 shadow-md mb-6 transition-all duration-300 hover:shadow-lg;
+            }
+            .policy-card h3 {
+                @apply font-bold text-xl mb-3;
+            }
+            .company-card {
+                @apply flex items-center p-4 bg-white rounded-lg shadow-sm mb-4 transition-all duration-300 hover:shadow-md;
+            }
+            .company-card img {
+                @apply w-12 h-12 rounded-full mr-4;
+            }
+            .company-card .name {
+                @apply font-medium;
+            }
+            .company-card .impact {
+                @apply text-sm text-muted;
+            }
+            .stock-change {
+                @apply inline-block px-2 py-1 rounded text-sm font-medium;
+            }
+            .stock-up {
+                @apply bg-green-100 text-green-800;
+            }
+            .investment-item {
+                @apply flex items-center justify-between p-4 bg-light rounded-lg mb-4;
+            }
+            .investment-item .amount {
+                @apply font-bold text-primary;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- 导航栏 -->
+<!--    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="flex justify-between items-center h-16">-->
+<!--                <div class="flex items-center">-->
+<!--                    <div class="text-primary font-bold text-xl">钛媒体AGI</div>-->
+<!--                </div>-->
+<!--                <nav class="hidden md:flex space-x-8">-->
+<!--                    <a href="#overview" class="text-dark hover:text-primary transition-colors">政策概览</a>-->
+<!--                    <a href="#details" class="text-dark hover:text-primary transition-colors">规则详情</a>-->
+<!--                    <a href="#reactions" class="text-dark hover:text-primary transition-colors">业界反应</a>-->
+<!--                    <a href="#china-response" class="text-dark hover:text-primary transition-colors">中方回应</a>-->
+<!--                    <a href="#investment" class="text-dark hover:text-primary transition-colors">投资动态</a>-->
+<!--                </nav>-->
+<!--                <div class="md:hidden">-->
+<!--                    <button id="menu-toggle" class="text-dark hover:text-primary">-->
+<!--                        <i class="fa-solid fa-bars text-xl"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
+<!--        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">-->
+<!--            <div class="container mx-auto px-4 py-3 space-y-3">-->
+<!--                <a href="#overview" class="block text-dark hover:text-primary transition-colors">政策概览</a>-->
+<!--                <a href="#details" class="block text-dark hover:text-primary transition-colors">规则详情</a>-->
+<!--                <a href="#reactions" class="block text-dark hover:text-primary transition-colors">业界反应</a>-->
+<!--                <a href="#china-response" class="block text-dark hover:text-primary transition-colors">中方回应</a>-->
+<!--                <a href="#investment" class="block text-dark hover:text-primary transition-colors">投资动态</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+<!--    &lt;!&ndash; 英雄区域 &ndash;&gt;-->
+<!--    <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-20 md:py-32">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">-->
+<!--            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">美国AI政策重大调整</h1>-->
+<!--            <p class="text-[clamp(1.1rem,2vw,1.5rem)] max-w-3xl mx-auto mb-10 text-white/90">-->
+<!--                废除《AI扩散规则》，加强对华芯片管制-->
+<!--            </p>-->
+<!--            <div class="flex flex-wrap justify-center gap-4">-->
+<!--                <a href="#overview" class="px-6 py-3 bg-white text-primary rounded-lg hover:bg-white/90 transition-colors shadow-lg">-->
+<!--                    了解详情-->
+<!--                </a>-->
+<!--                <a href="#china-response" class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors">-->
+<!--                    中方回应-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <!-- 文章内容区域 -->
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-10 article-prose">
+            <!-- 文章头部信息 -->
+            <div class="text-center mb-12">
+                <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">美国商务部废除拜登签署的《AI扩散规则》，并要求全球不准使用华为AI芯片</h1>
+                <div class="flex justify-center items-center text-muted mb-6">
+                    <span class="mr-4">发布时间：2025-05-13</span>
+                    <span>来源：钛媒体AGI</span>
+                </div>
+                <div class="h-1 w-24 bg-primary mx-auto"></div>
+            </div>
+
+            <!-- 政策概览 -->
+            <section id="overview">
+                <p>美国前总统拜登签署的《AI扩散规则》在生效之前被暂停。5月13日消息，钛媒体AGI获悉，就在刚刚，美国商务部正式发布文件，启动撤销拜登签署的《AI扩散规则》，同时宣布采取额外措施加强对全球芯片出口管制。</p>
+                
+                <div class="policy-card">
+                    <h3>政策核心要点</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>撤销原定于2025年5月15日生效的《AI扩散规则》</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>宣布新措施加强对全球芯片出口管制，特别是针对华为昇腾芯片</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>对沙特阿拉伯等盟友采取更加开放的AI技术出口立场</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p>美国商务部工业和安全局（BIS）表示，《AI扩散规则》于2025年1月15日发布，其合规要求原定于2025年5月15日生效。但这些新要求将扼杀美国的创新，并给企业带来繁重的新监管要求。《AI扩散规则》还将损害美国与数十个国家的外交关系，使这些国家的地位降至二线。</p>
+            </section>
+
+            <!-- 规则详情 -->
+            <section id="details">
+                <h2>规则详情：撤销与新增的具体内容</h2>
+                
+                <h3>撤销《AI扩散规则》</h3>
+                
+                <p>美国商务部负责工业和安全的副部长杰弗里·凯斯勒 (Jeffery Kessler) 表示，BIS执法官员不要执行拜登政府的人工智能扩散规则，并指出美国特朗普政府将与世界各地值得信赖的国家共同推行一项大胆、包容的美国AI技术战略，同时确保该技术不落入其对手之手。与此同时，反对拜登政府将其自身错误且适得其反的AI政策强加于美国人民。据悉，BIS计划在《联邦公报》上发布正式撤销通知，并将在未来发布替代规则。</p>
+                
+                <div class="bg-light rounded-lg p-6 mb-8">
+                    <h4 class="font-bold mb-3">《AI扩散规则》原内容</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-microchip text-primary mt-1 mr-3"></i>
+                            <span>英伟达等公司最先进的AI芯片及人工智能大模型权重将遵循分级制度</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-globe text-primary mt-1 mr-3"></i>
+                            <span>确保将最尖端的计算机技术保留在美国及其盟友的范围内</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-ban text-primary mt-1 mr-3"></i>
+                            <span>限制向被视为竞争对手的国家出口先进AI技术</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <h3>新增出口管制措施</h3>
+                
+                <p>美国商务部BIS今天还发布新规，称加强对海外AI芯片的出口管制，包括美国不准全球使用华为昇腾AI芯片等。</p>
+                
+                <div class="comparison-table overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>新增管制措施</th>
+                                <th>具体内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>针对华为昇腾芯片</td>
+                                <td>发布指导意见，指出在世界任何地方使用华为昇腾（Ascend）芯片违反了美国的出口管制</td>
+                            </tr>
+                            <tr>
+                                <td>防止技术转移</td>
+                                <td>发布指导意见，警告公众允许美国人工智能芯片用于训练和干扰中国人工智能模型的潜在后果</td>
+                            </tr>
+                            <tr>
+                                <td>供应链保护</td>
+                                <td>向美国公司发布有关如何保护供应链免受转移策略影响的指南</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 业界反应 -->
+            <section id="reactions">
+                <h2>业界反应：科技巨头与行业领袖发声</h2>
+                
+                <p>针对于《AI扩散规则》，前不久美国国会参议院听证会上，多位科技公司CEO表示，美国用过多的规则将扼杀不断发展的创新领域，出口管制最终可能会迫使其他国家采用中国的AI技术。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="policy-card">
+                        <h3>科技公司CEO观点</h3>
+                        <ul class="space-y-4">
+                            <li>
+                                <div class="font-bold">OpenAI CEO 山姆·阿尔特曼（Sam Altman）</div>
+                                <p class="italic">"中美在AI领域的差距正在缩小。当前中美AI竞争的环境下，美国必须保障供应链自主、安全和效率，否则其他努力都难以持续。"</p>
+                            </li>
+                            <li>
+                                <div class="font-bold">AMD CEO 苏姿丰（Lisa Su）</div>
+                                <p class="italic">"我们完全理解国家安全的重要性。然而，即便美国的技术无法在世界其他地方普及，也会有其他技术出现。她表示，其他技术目前尚不先进，但会随着时间的推移而逐渐成熟。"</p>
+                            </li>
+                            <li>
+                                <div class="font-bold">微软总裁 布拉德·史密斯 (Brad Smith)</div>
+                                <p class="italic">"决定美国或中国谁将在这场AI竞赛中胜出的首要因素，是谁的技术能在全球范围内被更广泛采用。华为在5G网络上的领先给我们的教训是：谁先一步占领市场，谁就很难被取代。"</p>
+                            </li>
+                            <li>
+                                <div class="font-bold">英伟达CEO 黄仁勋</div>
+                                <p class="italic">"华为毫无疑问是全球最强大的科技公司之一，在计算技术、网络技术和软件能力方面强得令人难以置信，拥有推动AI发展的所有必要能力。美国无法操纵监管机构来夺取AI的胜利。美国企业应该专注于创新，迎接挑战，以确保在人工智能领域的地位。"</p>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>企业影响与市场反应</h3>
+                        <div class="space-y-4">
+                            <div class="company-card">
+                                <img src="https://picsum.photos/200/200?random=1" alt="英伟达">
+                                <div>
+                                    <div class="name">英伟达 (NVIDIA)</div>
+                                    <div class="impact">股价一度涨超5%，将受益于规则撤销，与沙特合作建设AI工厂</div>
+                                </div>
+                            </div>
+                            <div class="company-card">
+                                <img src="https://picsum.photos/200/200?random=2" alt="亚马逊">
+                                <div>
+                                    <div class="name">亚马逊 (Amazon)</div>
+                                    <div class="impact">股价涨超2%，云服务业务或受益于AI技术出口放宽</div>
+                                </div>
+                            </div>
+                            <div class="company-card">
+                                <img src="https://picsum.photos/200/200?random=3" alt="博通">
+                                <div>
+                                    <div class="name">博通 (Broadcom)</div>
+                                    <div class="impact">股价涨超2%，芯片销售可能增加</div>
+                                </div>
+                            </div>
+                            <div class="company-card">
+                                <img src="https://picsum.photos/200/200?random=4" alt="台积电">
+                                <div>
+                                    <div class="name">台积电 (TSMC)</div>
+                                    <div class="impact">股价涨超2%，先进制程需求或提升</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 中方回应 -->
+            <section id="china-response">
+                <h2>中方回应：反对美方将经贸科技问题政治化</h2>
+                
+                <p>针对美国制定更加严格的半导体限制措施，中国外交部发言人曾多次表示，中方已多次就美国恶意封锁打压中国半导体产业表明严正立场。美方将经贸科技问题政治化、泛安全化、工具化，不断加码对华芯片出口管制，胁迫别国打压中国半导体产业。这种行径阻碍全球半导体产业发展，最终将反噬自身，损人害己。</p>
+                
+                <div class="bg-primary/5 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4">中方核心立场</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>反对将经贸科技问题政治化、泛安全化、工具化</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>美方行径阻碍全球半导体产业发展，最终将反噬自身</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>敦促美方停止滥用出口管制措施，维护全球产业链供应链稳定</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 投资动态 -->
+            <section id="investment">
+                <h2>投资动态：沙特向美国投资6000亿美元</h2>
+                
+                <p>值得一提的是，就在美国商务部宣布撤销《AI扩散规则》的同时，特朗普宣布，沙特阿拉伯承诺将向美国投资6000亿美元。</p>
+                
+                <div class="policy-card">
+                    <h3>主要投资项目</h3>
+                    <div class="space-y-4">
+                        <div class="investment-item">
+                            <div>
+                                <div class="font-bold">能源与基础设施</div>
+                                <div class="text-sm text-muted">沙特DataVolt投资200亿美元建设AI数据中心和能源基础设施</div>
+                            </div>
+                            <div class="amount">$200亿</div>
+                        </div>
+                        <div class="investment-item">
+                            <div>
+                                <div class="font-bold">科技合作</div>
+                                <div class="text-sm text-muted">谷歌、DataVolt、甲骨文、Salesforce、AMD和Uber承诺向沙特、美国共同技术投资</div>
+                            </div>
+                            <div class="amount">$800亿</div>
+                        </div>
+                        <div class="investment-item">
+                            <div>
+                                <div class="font-bold">基础设施建设</div>
+                                <div class="text-sm text-muted">美国公司参与建设萨勒曼国王国际机场等重要项目</div>
+                            </div>
+                            <div class="amount">$20亿</div>
+                        </div>
+                        <div class="investment-item">
+                            <div>
+                                <div class="font-bold">能源设备采购</div>
+                                <div class="text-sm text-muted">GE Vernova的燃气轮机和能源解决方案</div>
+                            </div>
+                            <div class="amount">$142亿</div>
+                        </div>
+                        <div class="investment-item">
+                            <div>
+                                <div class="font-bold">航空采购</div>
+                                <div class="text-sm text-muted">AviLease的波音737-8客机</div>
+                            </div>
+                            <div class="amount">$48亿</div>
+                        </div>
+                        <div class="investment-item">
+                            <div>
+                                <div class="font-bold">医疗保健</div>
+                                <div class="text-sm text-muted">Shamekh IV Solutions在密歇根州建立工厂</div>
+                            </div>
+                            <div class="amount">$58亿</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>此外，沙特还将部署对美国的特定行业基金，例如50亿美元的能源投资基金、50亿美元的新航空航天和国防技术基金以及40亿美元的恩菲尔德体育全球体育基金，每个基金都为美国产业注入大量资金，推动创新，并在美国各地创造高质量的就业机会。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=30" alt="沙特与美国的科技合作" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold mb-2">沙特与美国的科技合作</h4>
+                        <p class="text-muted">沙特AI公司Humain已经表示，将与英伟达在沙特建设人工智能工厂。此外，英伟达还将与沙特建设AI基础设施，以及培训开发人员。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 相关资源 -->
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-dark mb-6">相关资源</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="#" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-file-pdf text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">美国商务部文件</h3>
+                                <p class="text-muted text-sm mt-2">查看官方公告原文</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-newspaper text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">更多相关报道</h3>
+                                <p class="text-muted text-sm mt-2">浏览最新资讯</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-chart-line text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">市场分析</h3>
+                                <p class="text-muted text-sm mt-2">了解政策对行业的影响</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!--    &lt;!&ndash; 页脚 &ndash;&gt;-->
+<!--    <footer class="bg-dark text-white py-12">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="max-w-4xl mx-auto">-->
+<!--                <div class="flex flex-col md:flex-row justify-between items-center">-->
+<!--                    <div class="mb-6 md:mb-0">-->
+<!--                        <div class="text-xl font-bold">钛媒体AGI</div>-->
+<!--                        <p class="text-gray-400 mt-2">全球前沿科技信息平台</p>-->
+<!--                    </div>-->
+<!--                    <div class="flex space-x-6">-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-twitter text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-linkedin text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-github text-2xl"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">-->
+<!--                    <p>© 2025 钛媒体AGI. 保留所有权利.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // 卡片悬停效果
+        document.querySelectorAll('.demo-card, .tech-card, .policy-card, .company-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-lg');
+                this.classList.remove('shadow-sm', 'shadow-md');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-lg');
+                this.classList.add('shadow-sm', 'shadow-md');
+            });
+        });
+    </script>
+</body>
+</html>
+    
+
+

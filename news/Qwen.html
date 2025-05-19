@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen Deep Research - 智能研究助手 | 钛媒体AGI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#00C19D',
+                        dark: '#1A1A1A',
+                        light: '#F9F9F9',
+                        muted: '#666666'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .article-prose {
+                @apply max-w-4xl mx-auto text-dark/80 leading-relaxed;
+            }
+            .article-prose h2 {
+                @apply text-2xl md:text-3xl font-bold text-dark mt-12 mb-6 scroll-mt-20 border-b border-gray-200 pb-3;
+            }
+            .article-prose h3 {
+                @apply text-xl md:text-2xl font-bold text-dark mt-8 mb-4 scroll-mt-20;
+            }
+            .article-prose p {
+                @apply mb-6;
+            }
+            .article-prose ul {
+                @apply list-disc pl-6 mb-6 space-y-2;
+            }
+            .article-prose ol {
+                @apply list-decimal pl-6 mb-6 space-y-2;
+            }
+            .article-prose a {
+                @apply text-primary hover:underline;
+            }
+            .article-prose blockquote {
+                @apply border-l-4 border-primary pl-4 italic my-6 bg-light rounded-r-lg p-4;
+            }
+            .article-prose img {
+                @apply rounded-lg shadow-md my-8 mx-auto max-w-full transition-transform duration-500 hover:scale-[1.02];
+            }
+            .article-prose table {
+                @apply w-full border-collapse my-8;
+            }
+            .article-prose th, .article-prose td {
+                @apply border border-gray-300 p-3;
+            }
+            .article-prose th {
+                @apply bg-gray-100 font-semibold;
+            }
+            .feature-card {
+                @apply bg-white rounded-xl p-6 shadow-md mb-6 transition-all duration-300 hover:shadow-lg border-l-4 border-primary;
+            }
+            .feature-card h3 {
+                @apply font-bold text-xl mb-3 flex items-center;
+            }
+            .feature-card h3 i {
+                @apply text-primary mr-3;
+            }
+            .process-step {
+                @apply bg-white rounded-xl p-6 shadow-md mb-6 relative overflow-hidden;
+            }
+            .process-step-number {
+                @apply absolute -top-6 -right-6 bg-primary/10 text-primary text-5xl font-bold p-4 rounded-full opacity-20;
+            }
+            .process-step h3 {
+                @apply font-bold text-xl mb-3 flex items-center;
+            }
+            .use-case-card {
+                @apply bg-white rounded-xl p-6 shadow-md mb-6 transition-all duration-300 hover:shadow-lg;
+            }
+            .use-case-card h3 {
+                @apply font-bold text-xl mb-3;
+            }
+            .cta-button {
+                @apply px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-lg font-medium text-lg inline-flex items-center;
+            }
+            .cta-button i {
+                @apply ml-2;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+<!--    &lt;!&ndash; 导航栏 &ndash;&gt;-->
+<!--    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="flex justify-between items-center h-16">-->
+<!--                <div class="flex items-center">-->
+<!--                    <div class="text-primary font-bold text-xl">钛媒体AGI</div>-->
+<!--                </div>-->
+<!--                <nav class="hidden md:flex space-x-8">-->
+<!--                    <a href="#overview" class="text-dark hover:text-primary transition-colors">产品概览</a>-->
+<!--                    <a href="#features" class="text-dark hover:text-primary transition-colors">核心功能</a>-->
+<!--                    <a href="#process" class="text-dark hover:text-primary transition-colors">研究流程</a>-->
+<!--                    <a href="#use-cases" class="text-dark hover:text-primary transition-colors">应用场景</a>-->
+<!--                    <a href="#experience" class="text-dark hover:text-primary transition-colors">立即体验</a>-->
+<!--                </nav>-->
+<!--                <div class="md:hidden">-->
+<!--                    <button id="menu-toggle" class="text-dark hover:text-primary">-->
+<!--                        <i class="fa-solid fa-bars text-xl"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
+<!--        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">-->
+<!--            <div class="container mx-auto px-4 py-3 space-y-3">-->
+<!--                <a href="#overview" class="block text-dark hover:text-primary transition-colors">产品概览</a>-->
+<!--                <a href="#features" class="block text-dark hover:text-primary transition-colors">核心功能</a>-->
+<!--                <a href="#process" class="block text-dark hover:text-primary transition-colors">研究流程</a>-->
+<!--                <a href="#use-cases" class="block text-dark hover:text-primary transition-colors">应用场景</a>-->
+<!--                <a href="#experience" class="block text-dark hover:text-primary transition-colors">立即体验</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+<!--    &lt;!&ndash; 英雄区域 &ndash;&gt;-->
+<!--    <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-20 md:py-32">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">-->
+<!--            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">Qwen Deep Research</h1>-->
+<!--            <p class="text-[clamp(1.1rem,2vw,1.5rem)] max-w-3xl mx-auto mb-10 text-white/90">-->
+<!--                你的智能研究助手，让复杂研究变得简单高效-->
+<!--            </p>-->
+<!--            <div class="flex flex-wrap justify-center gap-4">-->
+<!--                <a href="#experience" class="px-6 py-3 bg-white text-primary rounded-lg hover:bg-white/90 transition-colors shadow-lg">-->
+<!--                    立即体验 <i class="fa-solid fa-arrow-right ml-2"></i>-->
+<!--                </a>-->
+<!--                <a href="#process" class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors">-->
+<!--                    了解更多-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <!-- 文章内容区域 -->
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-10 article-prose">
+            <!-- 文章头部信息 -->
+            <div class="text-center mb-12">
+                <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">Qwen Deep Research：让复杂研究变得简单高效</h1>
+                <div class="flex justify-center items-center text-muted mb-6">
+                    <span class="mr-4">发布时间：2025-05-19</span>
+                    <span>来源：钛媒体AGI</span>
+                </div>
+                <div class="h-1 w-24 bg-primary mx-auto"></div>
+            </div>
+
+            <!-- 产品概览 -->
+            <section id="overview">
+                <p>面对海量信息和高强度的任务压力，系统地研究一件事变得费时且难以聚焦。你可能想找个靠谱的「助手」，帮你梳理复杂问题，快速理清头绪，甚至直接生成一份条理清晰、数据可信的研究报告。</p>
+                
+                <div class="bg-light rounded-xl p-6 mb-8">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 mb-6 md:mb-0 md:pr-6">
+                            <h3 class="text-2xl font-bold text-dark mb-4">Qwen Deep Research 是什么？</h3>
+                            <p>Deep Research 是由 Qwen 团队打造的一个智能助理系统，能够逐步规划复杂的研究任务，综合大量在线信息，并协助你完成复杂的科研任务。</p>
+                            <ul class="mt-4 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <span>多步骤研究规划与执行</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <span>海量在线信息整合分析</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <span>结构化研究报告生成</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <span>全流程透明可追溯</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://picsum.photos/800/600?random=10" alt="Qwen Deep Research界面" class="rounded-lg shadow-md w-full">
+                        </div>
+                    </div>
+                </div>
+                
+                <p>具体而言，Deep Research 可以结合互联网上的海量信息，对复杂任务进行多步骤的搜索和分析总结，并以全面、易读的报告形式呈现研究结果。过去需要数小时才能完成的任务，现在只需十几分钟即可完成，大大提升了用户处理复杂任务的效率。</p>
+            </section>
+
+            <!-- 核心功能 -->
+            <section id="features">
+                <h2>核心功能：让研究变得简单高效</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="feature-card">
+                        <h3><i class="fa-solid fa-magnifying-glass"></i> 智能任务理解</h3>
+                        <p>Deep Research 将分析用户的提示（prompt），并通过提出反问的方式进一步确认任务的具体细节，确保准确理解研究需求。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3><i class="fa-solid fa-list-ol"></i> 多步骤研究规划</h3>
+                        <p>制定详细的多步骤研究计划，系统地查找、分析并整合来自网络的相关信息，确保研究的全面性和深度。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3><i class="fa-solid fa-refresh"></i> 动态计划优化</h3>
+                        <p>在研究过程中不断优化研究计划，根据阶段性成果开展进一步的搜索，确保找到最关键的信息。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3><i class="fa-solid fa-file-text"></i> 结构化报告生成</h3>
+                        <p>生成详尽的综合报告，每条结论都有完整的记录，并附有清晰的引用来源，方便用户参考和验证。</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">10倍</div>
+                    <div class="stat-label">提升研究效率，过去数小时的任务现在只需十几分钟</div>
+                </div>
+            </section>
+
+            <!-- 研究流程 -->
+            <section id="process">
+                <h2>研究流程：从需求到成果的完整闭环</h2>
+                
+                <p>使用 Deep Research 异常简单，只需给 Qwen Deep Research 一句提示（prompt），它就会开启一个完整的研究流程。</p>
+                
+                <div class="space-y-6">
+                    <div class="process-step">
+                        <div class="process-step-number">1</div>
+                        <h3><i class="fa-solid fa-lightbulb text-primary mr-3"></i> 需求理解</h3>
+                        <p>Deep Research 将分析用户的 prompt，并通过提出反问的方式进一步确认任务的具体细节，确保准确把握研究目标。</p>
+                        <img src="https://picsum.photos/800/400?random=11" alt="需求理解" class="rounded-lg shadow-md my-4 w-full">
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">2</div>
+                        <h3><i class="fa-solid fa-road text-primary mr-3"></i> 研究规划</h3>
+                        <p>制定一个多步骤的研究计划，明确需要查找、分析的关键信息点，为后续研究奠定基础。</p>
+                        <img src="https://picsum.photos/800/400?random=12" alt="研究规划" class="rounded-lg shadow-md my-4 w-full">
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">3</div>
+                        <h3><i class="fa-solid fa-search text-primary mr-3"></i> 信息收集与分析</h3>
+                        <p>开始查找、分析并整合来自网络的相关信息，在研究过程中不断优化研究计划，寻找关键信息。</p>
+                        <img src="https://picsum.photos/800/400?random=13" alt="信息收集与分析" class="rounded-lg shadow-md my-4 w-full">
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-step-number">4</div>
+                        <h3><i class="fa-solid fa-file-text text-primary mr-3"></i> 报告生成</h3>
+                        <p>根据研究结果生成详尽的 Deep Research 综合报告，每条结论都附有完整的引用来源。</p>
+                        <img src="https://picsum.photos/800/400?random=14" alt="报告生成" class="rounded-lg shadow-md my-4 w-full">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 应用场景 -->
+            <section id="use-cases">
+                <h2>应用场景：不止科研，每个人都能用</h2>
+                
+                <p>Qwen 团队希望通过 Deep Research，真正解决现实生活中遇到的问题，并生成实用性强、易于理解的综合报告。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="use-case-card">
+                        <h3><i class="fa-solid fa-briefcase text-primary mr-2"></i> 职场人士</h3>
+                        <p>产品经理可以快速获取市场分析和竞品对比；市场调研人员可以生成行业报告；数据分析师可以获取相关领域的数据支持和分析建议。</p>
+                    </div>
+                    
+                    <div class="use-case-card">
+                        <h3><i class="fa-solid fa-graduation-cap text-primary mr-2"></i> 学生与教育工作者</h3>
+                        <p>学生可以借助 Deep Research 完成课程作业、论文开题报告和技术分享；教师可以获取教学资料和课程设计建议。</p>
+                    </div>
+                    
+                    <div class="use-case-card">
+                        <h3><i class="fa-solid fa-home text-primary mr-2"></i> 普通用户</h3>
+                        <p>家长可以为孩子挑选合适的暑期夏令营；旅行者可以制定详细的旅行计划；投资者可以获取市场分析和投资建议。</p>
+                    </div>
+                    
+                    <div class="use-case-card">
+                        <h3><i class="fa-solid fa-flask text-primary mr-2"></i> 科研工作者</h3>
+                        <p>博士生可以借助 Deep Research 准备博士论文的开题报告；研究员可以获取相关领域的前沿研究动态和文献综述。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 立即体验 -->
+            <section id="experience" class="mt-16 bg-primary/5 rounded-xl p-8 text-center">
+                <h2 class="text-3xl font-bold text-dark mb-6">立即体验 Qwen Deep Research</h2>
+                <p class="max-w-2xl mx-auto mb-8">在 QwenChat 上，Deep Research 已对所有人免费开放体验。只需一句提示，即可开启整套研究流程。</p>
+                <a href="#" class="cta-button">
+                    前往 QwenChat 体验 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <div class="mt-8">
+                    <img src="https://picsum.photos/1000/600?random=20" alt="Qwen Deep Research体验界面" class="rounded-lg shadow-md w-full max-w-4xl mx-auto">
+                </div>
+            </section>
+
+            <!-- 相关资源 -->
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-dark mb-6">相关资源</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="#" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-book text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">使用教程</h3>
+                                <p class="text-muted text-sm mt-2">学习如何充分利用Deep Research</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-video text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">视频演示</h3>
+                                <p class="text-muted text-sm mt-2">观看Deep Research实际操作演示</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-comments text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">社区讨论</h3>
+                                <p class="text-muted text-sm mt-2">加入讨论，分享使用心得</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!--    &lt;!&ndash; 页脚 &ndash;&gt;-->
+<!--    <footer class="bg-dark text-white py-12">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="max-w-4xl mx-auto">-->
+<!--                <div class="flex flex-col md:flex-row justify-between items-center">-->
+<!--                    <div class="mb-6 md:mb-0">-->
+<!--                        <div class="text-xl font-bold">钛媒体AGI</div>-->
+<!--                        <p class="text-gray-400 mt-2">全球前沿科技信息平台</p>-->
+<!--                    </div>-->
+<!--                    <div class="flex space-x-6">-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-twitter text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-linkedin text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-github text-2xl"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">-->
+<!--                    <p>© 2025 钛媒体AGI. 保留所有权利.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // 卡片悬停效果
+        document.querySelectorAll('.demo-card, .feature-card, .process-step, .use-case-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-lg');
+                this.classList.remove('shadow-sm', 'shadow-md');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-lg');
+                this.classList.add('shadow-sm', 'shadow-md');
+            });
+        });
+    </script>
+</body>
+</html>
+    
+
+

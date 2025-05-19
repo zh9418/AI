@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹅厂把文生图卷出新高度：混元图像2.0实现毫秒级响应，边说边画</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#00C19D',
+                        dark: '#1A1A1A',
+                        light: '#F9F9F9',
+                        muted: '#666666'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .article-prose {
+                @apply max-w-4xl mx-auto text-dark/80 leading-relaxed;
+            }
+            .article-prose h2 {
+                @apply text-2xl md:text-3xl font-bold text-dark mt-12 mb-6 scroll-mt-20 border-b border-gray-200 pb-3;
+            }
+            .article-prose h3 {
+                @apply text-xl md:text-2xl font-bold text-dark mt-8 mb-4 scroll-mt-20;
+            }
+            .article-prose p {
+                @apply mb-6;
+            }
+            .article-prose ul {
+                @apply list-disc pl-6 mb-6 space-y-2;
+            }
+            .article-prose ol {
+                @apply list-decimal pl-6 mb-6 space-y-2;
+            }
+            .article-prose a {
+                @apply text-primary hover:underline;
+            }
+            .article-prose blockquote {
+                @apply border-l-4 border-primary pl-4 italic my-6 bg-light rounded-r-lg p-4;
+            }
+            .article-prose img {
+                @apply rounded-lg shadow-md my-8 mx-auto max-w-full transition-transform duration-500 hover:scale-[1.02];
+            }
+            .article-prose table {
+                @apply w-full border-collapse my-8;
+            }
+            .article-prose th, .article-prose td {
+                @apply border border-gray-300 p-3;
+            }
+            .article-prose th {
+                @apply bg-gray-100 font-semibold;
+            }
+            .tech-card {
+                @apply bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1;
+            }
+            .tech-card-icon {
+                @apply text-primary text-3xl mb-4;
+            }
+            .comparison-table {
+                @apply w-full border-collapse my-8;
+            }
+            .comparison-table th, .comparison-table td {
+                @apply border border-gray-300 p-4;
+            }
+            .comparison-table th {
+                @apply bg-gray-100 font-semibold text-center;
+            }
+            .comparison-table td:first-child {
+                @apply font-medium;
+            }
+            .stat-card {
+                @apply bg-light rounded-xl p-6 text-center shadow-sm;
+            }
+            .stat-value {
+                @apply text-3xl font-bold text-primary mb-2;
+            }
+            .stat-label {
+                @apply text-muted;
+            }
+            .demo-card {
+                @apply bg-white rounded-xl overflow-hidden shadow-md mb-6 transition-all duration-300 hover:shadow-lg;
+            }
+            .demo-card img {
+                @apply w-full h-64 object-cover;
+            }
+            .demo-card .content {
+                @apply p-6;
+            }
+            .feature-item {
+                @apply flex items-start mb-4;
+            }
+            .feature-item i {
+                @apply text-primary mt-1 mr-3;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- 导航栏 -->
+<!--    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="flex justify-between items-center h-16">-->
+<!--                <div class="flex items-center">-->
+<!--                    <div class="text-primary font-bold text-xl">AI前沿</div>-->
+<!--                </div>-->
+<!--                <nav class="hidden md:flex space-x-8">-->
+<!--                    <a href="#overview" class="text-dark hover:text-primary transition-colors">概览</a>-->
+<!--                    <a href="#features" class="text-dark hover:text-primary transition-colors">核心功能</a>-->
+<!--                    <a href="#performance" class="text-dark hover:text-primary transition-colors">技术亮点</a>-->
+<!--                    <a href="#demo" class="text-dark hover:text-primary transition-colors">实测体验</a>-->
+<!--                    <a href="#future" class="text-dark hover:text-primary transition-colors">未来展望</a>-->
+<!--                </nav>-->
+<!--                <div class="md:hidden">-->
+<!--                    <button id="menu-toggle" class="text-dark hover:text-primary">-->
+<!--                        <i class="fa-solid fa-bars text-xl"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
+<!--        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">-->
+<!--            <div class="container mx-auto px-4 py-3 space-y-3">-->
+<!--                <a href="#overview" class="block text-dark hover:text-primary transition-colors">概览</a>-->
+<!--                <a href="#features" class="block text-dark hover:text-primary transition-colors">核心功能</a>-->
+<!--                <a href="#performance" class="block text-dark hover:text-primary transition-colors">技术亮点</a>-->
+<!--                <a href="#demo" class="block text-dark hover:text-primary transition-colors">实测体验</a>-->
+<!--                <a href="#future" class="block text-dark hover:text-primary transition-colors">未来展望</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+<!--    &lt;!&ndash; 英雄区域 &ndash;&gt;-->
+<!--    <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-20 md:py-32">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">-->
+<!--            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">混元图像2.0</h1>-->
+<!--            <p class="text-[clamp(1.1rem,2vw,1.5rem)] max-w-3xl mx-auto mb-10 text-white/90">-->
+<!--                毫秒级响应，边说边画，实时生成-->
+<!--            </p>-->
+<!--            <div class="flex flex-wrap justify-center gap-4">-->
+<!--                <a href="#overview" class="px-6 py-3 bg-white text-primary rounded-lg hover:bg-white/90 transition-colors shadow-lg">-->
+<!--                    了解详情-->
+<!--                </a>-->
+<!--                <a href="https://hunyuan.qq.com/" target="_blank" class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors">-->
+<!--                    <i class="fa-solid fa-external-link-alt mr-2"></i>访问官网-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <!-- 文章内容区域 -->
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-10 article-prose">
+            <!-- 文章头部信息 -->
+            <div class="text-center mb-12">
+                <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">鹅厂把文生图卷出新高度：混元图像2.0实现毫秒级响应，边说边画</h1>
+                <div class="flex justify-center items-center text-muted mb-6">
+                    <span class="mr-4">发布时间：2025-05-19</span>
+                    <span>来源：量子位</span>
+                </div>
+                <div class="h-1 w-24 bg-primary mx-auto"></div>
+            </div>
+
+            <!-- 概览 -->
+            <section id="overview">
+                <p>刚刚，鹅厂把文生图卷出了新高度——发布混元图像2.0模型（Hunyuan Image 2.0），首次实现毫秒级响应，边说边画，实时生成！用户一边描述，它紧跟着绘制，整个过程那叫一个丝滑。不用等待，专治各种没有耐心。</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-value">毫秒级</div>
+                        <div class="stat-label">响应速度</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">16:9</div>
+                        <div class="stat-label">推荐比例</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">中英文</div>
+                        <div class="stat-label">语音支持</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">多模态</div>
+                        <div class="stat-label">交互方式</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心功能 -->
+            <section id="features">
+                <h2>核心功能展示</h2>
+                
+                <h3>实时文生图</h3>
+                <p>打开腾讯混元官网我们就直奔实时文生图，然后随便输入了一句话。果真是一边打字生图直接跟着一起变换，顺畅～而且当它把“小女孩”这一主体的模样定下来之后，我们再接着描述对画面做补充，它角色一致性保持得也不错。各种风格都能驾驭。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=1" alt="实时文生图示例" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">各种风格都能驾驭</h4>
+                            <p class="text-muted">虽然官方表示真实场景生图效果会更好，但我们尝试了一下动漫风、编织风等，效果也都不错。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=2" alt="语音输入示例" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">语音输入支持</h4>
+                            <p class="text-muted">除了手打Prompt，解放双手实时语音输入也行，支持中英文，你一边说着它一边生成。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>参考图生成</h3>
+                <p>支持上传参考图，可选择提取参考图的主体或轮廓特征，参考图片的约束强度也能调整。设置好参考图后再输入指令，Hunyuan Image 2.0就会将参考特征和文本指令相结合生成图像。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=3" alt="参考图生成示例" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">参考轮廓生成</h4>
+                            <p class="text-muted">比如上传一块蛋糕的照片，参考轮廓，秒秒钟就能把巧克力味改成草莓味的，形状和摆放都和参考图保持一致。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=4" alt="简笔画上色示例" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">简笔画上色</h4>
+                            <p class="text-muted">上传一张简笔画，然后一键上色，效果令人惊艳。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>实时绘画板</h3>
+                <p>实时绘画板玩法感觉更适合有一定设计能力的童鞋。画出个大概即可，其余的交给Hunyuan Image 2.0～同样可以拖动设置图片强度，越强与左侧手绘的模样就越像。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=5" alt="实时绘画板示例" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold mb-2">实时绘画板</h4>
+                        <p class="text-muted">用户可以手绘想要的元素，然后辅以文字说明，在另一半画板上它立刻就帮你按照草图绘制出来。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术亮点 -->
+            <section id="performance">
+                <h2>技术亮点解析</h2>
+                
+                <p>经过全尺度多维度强化学习后训练，从目前资料来看，HunyuanImage2.0有以下几个亮点。</p>
+                
+                <div class="bg-light rounded-lg p-6 mb-8">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">模型架构升级</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                                    <span>具有更大的模型尺寸，相比HunyuanDiT，HunyuanImage2.0将参数提升了一个数量级，更大的模型参数保证了模型的性能上限。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                                    <span>适配多模态大语言模型（MLLM）作为文本编码器，使得文生图模型的语义遵从能力大幅提升。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">性能优化</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                                    <span>自研了超高压缩倍率的图像编解码器，大幅降低了图像的编码序列长度，从而加快生图速度。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                                    <span>基于慢思考的reward model，通过通用后训练与美学后训练，有效提升图片生成的真实感，更符合现实需求。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comparison-table overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>技术指标</th>
+                                <th>Hunyuan Image 2.0</th>
+                                <th>业界同类产品</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>生图响应时间</td>
+                                <td>毫秒级</td>
+                                <td>秒级</td>
+                            </tr>
+                            <tr>
+                                <td>模型参数规模</td>
+                                <td>提升一个数量级</td>
+                                <td>常规规模</td>
+                            </tr>
+                            <tr>
+                                <td>语义遵从能力</td>
+                                <td>基于MLLM</td>
+                                <td>基于CLIP/T5</td>
+                            </tr>
+                            <tr>
+                                <td>图像编解码效率</td>
+                                <td>自研高压缩率编解码器</td>
+                                <td>传统编解码方案</td>
+                            </tr>
+                            <tr>
+                                <td>真实感评分</td>
+                                <td>显著提升</td>
+                                <td>常规水平</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 实测体验 -->
+            <section id="demo">
+                <h2>实测体验分享</h2>
+                
+                <p>量子位已抢先拿到测试资格，实测之前，先来看官方给出的一些小tips：</p>
+                
+                <div class="bg-primary/5 rounded-lg p-6 mb-8">
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>模型主打真实感、去AI味，真实场景生图效果会更好</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>模型是英文数据训练为主，有一些中文不能识别的概念，用英文输入会更好</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span>优先推荐16:9生图，效果更佳</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <h3>实测效果展示</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=6" alt="实测效果示例1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">角色一致性测试</h4>
+                            <p class="text-muted">当它把“小女孩”这一主体的模样定下来之后，我们再接着描述对画面做补充，它角色一致性保持得也不错。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=7" alt="实测效果示例2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">风格多样性测试</h4>
+                            <p class="text-muted">虽然官方表示真实场景生图效果会更好，但我们尝试了一下动漫风、编织风等，效果也都不错。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=8" alt="实测效果示例3" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold mb-2">参考图生成测试</h4>
+                        <p class="text-muted">设置好参考图后再输入指令，Hunyuan Image 2.0就会将参考特征和文本指令相结合生成图像，效果令人满意。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 未来展望 -->
+            <section id="future">
+                <h2>未来展望</h2>
+                
+                <p>发布会上，腾讯混元将剧透即将发布的原生多模态图像生成大模型信息，可以期待一下。新模型在多轮图像生成、实时交互体验等方面有突出表现。</p>
+                
+                <div class="bg-light rounded-lg p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4">腾讯混元图像路线图</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                            <span>持续优化Hunyuan Image 2.0，提升模型性能和用户体验</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                            <span>推出原生多模态图像生成大模型，支持更复杂的交互场景</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                            <span>拓展行业应用，为创意设计、游戏开发、影视制作等领域提供更强大的工具</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-arrow-right text-primary mt-1 mr-3"></i>
+                            <span>加强生态建设，与更多合作伙伴共同推动AI图像技术的发展</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p>在充满突破和创新的AI发展过程中，每一个阶段都会产生大量的新技术、新模式，企业唯有抓住AI时代机遇，才能抢占发展先机。腾讯混元致力于打造领先的AI图像生成技术，以安全、稳定、高质量、持续创新的服务，赋能千行万业应用创新。</p>
+            </section>
+
+            <!-- 相关推荐 -->
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-dark mb-6">相关推荐</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="#" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <img src="https://picsum.photos/400/250?random=20" alt="相关文章" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">AI图像生成技术最新进展</h3>
+                                <p class="text-muted text-sm mt-2">了解AI图像生成领域的前沿技术与应用</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <img src="https://picsum.photos/400/250?random=21" alt="相关文章" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">文生图模型对比评测</h3>
+                                <p class="text-muted text-sm mt-2">各大文生图模型性能与效果对比分析</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <img src="https://picsum.photos/400/250?random=22" alt="相关文章" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">AI绘画的商业应用场景</h3>
+                                <p class="text-muted text-sm mt-2">探索AI绘画在各行业的创新应用模式</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!--    &lt;!&ndash; 页脚 &ndash;&gt;-->
+<!--    <footer class="bg-dark text-white py-12">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="max-w-4xl mx-auto">-->
+<!--                <div class="flex flex-col md:flex-row justify-between items-center">-->
+<!--                    <div class="mb-6 md:mb-0">-->
+<!--                        <div class="text-xl font-bold">AI前沿</div>-->
+<!--                        <p class="text-gray-400 mt-2">探索AI科技创新，引领行业发展</p>-->
+<!--                    </div>-->
+<!--                    <div class="flex space-x-6">-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-twitter text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-linkedin text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-github text-2xl"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">-->
+<!--                    <p>© 2025 AI前沿. 保留所有权利.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // 卡片悬停效果
+        document.querySelectorAll('.demo-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-lg');
+                this.classList.remove('shadow-md');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-lg');
+                this.classList.add('shadow-md');
+            });
+        });
+    </script>
+</body>
+</html>
+    
+
+

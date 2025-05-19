@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI语音的Her Moment：个性化交互达到临界点</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#00C19D',
+                        dark: '#1A1A1A',
+                        light: '#F9F9F9',
+                        muted: '#666666'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .article-prose {
+                @apply max-w-4xl mx-auto text-dark/80 leading-relaxed;
+            }
+            .article-prose h2 {
+                @apply text-2xl md:text-3xl font-bold text-dark mt-12 mb-6 scroll-mt-20 border-b border-gray-200 pb-3;
+            }
+            .article-prose h3 {
+                @apply text-xl md:text-2xl font-bold text-dark mt-8 mb-4 scroll-mt-20;
+            }
+            .article-prose p {
+                @apply mb-6;
+            }
+            .article-prose ul {
+                @apply list-disc pl-6 mb-6 space-y-2;
+            }
+            .article-prose ol {
+                @apply list-decimal pl-6 mb-6 space-y-2;
+            }
+            .article-prose a {
+                @apply text-primary hover:underline;
+            }
+            .article-prose blockquote {
+                @apply border-l-4 border-primary pl-4 italic my-6 bg-light rounded-r-lg p-4;
+            }
+            .article-prose img {
+                @apply rounded-lg shadow-md my-8 mx-auto max-w-full transition-transform duration-500 hover:scale-[1.02];
+            }
+            .article-prose table {
+                @apply w-full border-collapse my-8;
+            }
+            .article-prose th, .article-prose td {
+                @apply border border-gray-300 p-3;
+            }
+            .article-prose th {
+                @apply bg-gray-100 font-semibold;
+            }
+            .tech-card {
+                @apply bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1;
+            }
+            .tech-card-icon {
+                @apply text-primary text-3xl mb-4;
+            }
+            .comparison-table {
+                @apply w-full border-collapse my-8;
+            }
+            .comparison-table th, .comparison-table td {
+                @apply border border-gray-300 p-4;
+            }
+            .comparison-table th {
+                @apply bg-gray-100 font-semibold text-center;
+            }
+            .comparison-table td:first-child {
+                @apply font-medium;
+            }
+            .stat-card {
+                @apply bg-light rounded-xl p-6 text-center shadow-sm;
+            }
+            .stat-value {
+                @apply text-3xl font-bold text-primary mb-2;
+            }
+            .stat-label {
+                @apply text-muted;
+            }
+            .demo-card {
+                @apply bg-white rounded-xl overflow-hidden shadow-md mb-6 transition-all duration-300 hover:shadow-lg;
+            }
+            .demo-card img {
+                @apply w-full h-64 object-cover;
+            }
+            .demo-card .content {
+                @apply p-6;
+            }
+            .feature-item {
+                @apply flex items-start mb-4;
+            }
+            .feature-item i {
+                @apply text-primary mt-1 mr-3;
+            }
+            .audio-sample {
+                @apply bg-light rounded-lg p-4 mb-6 border-l-4 border-accent;
+            }
+            .audio-sample p {
+                @apply mb-2 font-medium;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- 导航栏 -->
+<!--    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="flex justify-between items-center h-16">-->
+<!--                <div class="flex items-center">-->
+<!--                    <div class="text-primary font-bold text-xl">AI前沿</div>-->
+<!--                </div>-->
+<!--                <nav class="hidden md:flex space-x-8">-->
+<!--                    <a href="#overview" class="text-dark hover:text-primary transition-colors">概览</a>-->
+<!--                    <a href="#technology" class="text-dark hover:text-primary transition-colors">技术解析</a>-->
+<!--                    <a href="#features" class="text-dark hover:text-primary transition-colors">功能亮点</a>-->
+<!--                    <a href="#performance" class="text-dark hover:text-primary transition-colors">性能表现</a>-->
+<!--                    <a href="#applications" class="text-dark hover:text-primary transition-colors">应用与未来</a>-->
+<!--                </nav>-->
+<!--                <div class="md:hidden">-->
+<!--                    <button id="menu-toggle" class="text-dark hover:text-primary">-->
+<!--                        <i class="fa-solid fa-bars text-xl"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
+<!--        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">-->
+<!--            <div class="container mx-auto px-4 py-3 space-y-3">-->
+<!--                <a href="#overview" class="block text-dark hover:text-primary transition-colors">概览</a>-->
+<!--                <a href="#technology" class="block text-dark hover:text-primary transition-colors">技术解析</a>-->
+<!--                <a href="#features" class="block text-dark hover:text-primary transition-colors">功能亮点</a>-->
+<!--                <a href="#performance" class="block text-dark hover:text-primary transition-colors">性能表现</a>-->
+<!--                <a href="#applications" class="block text-dark hover:text-primary transition-colors">应用与未来</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+<!--    &lt;!&ndash; 英雄区域 &ndash;&gt;-->
+<!--    <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-20 md:py-32">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">-->
+<!--            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">AI语音的Her Moment</h1>-->
+<!--            <p class="text-[clamp(1.1rem,2vw,1.5rem)] max-w-3xl mx-auto mb-10 text-white/90">-->
+<!--                个性化交互达到临界点-->
+<!--            </p>-->
+<!--            <div class="flex flex-wrap justify-center gap-4">-->
+<!--                <a href="#overview" class="px-6 py-3 bg-white text-primary rounded-lg hover:bg-white/90 transition-colors shadow-lg">-->
+<!--                    了解详情-->
+<!--                </a>-->
+<!--                <a href="#demo" class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors">-->
+<!--                    体验演示-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <!-- 文章内容区域 -->
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-10 article-prose">
+            <!-- 文章头部信息 -->
+            <div class="text-center mb-12">
+                <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">AI语音的Her Moment：个性化交互达到临界点</h1>
+                <div class="flex justify-center items-center text-muted mb-6">
+                    <span class="mr-4">发布时间：2025-05-19</span>
+                    <span>来源：MiniMax</span>
+                </div>
+                <div class="h-1 w-24 bg-primary mx-auto"></div>
+            </div>
+
+            <!-- 概览 -->
+            <section id="overview">
+                <p>AI语音的 Her Moment 正在逐渐逼近。当无数智能体与硬件设备，以前所未有的方式进入我们的生活，AI语音交互也应声迎来爆发式的增长。大量终端、客户和创作者的个性化需求，需要同一套底层模型来规模化满足，在自然、富有温度的语音体验之外，「个性化语音」必须被解决。</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-value">32+</div>
+                        <div class="stat-label">支持语种</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">Zero-Shot</div>
+                        <div class="stat-label">跨语言能力</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">全球第一</div>
+                        <div class="stat-label">测评表现</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">×</div>
+                        <div class="stat-label">任意组合</div>
+                    </div>
+                </div>
+                
+                <p>当前领先的文本转语音（TTS）模型虽然令人印象深刻，但通常只提供有限的音色和语种选择。这不仅限制了用户的选择，也未能捕捉到人类语言中蕴含的文化多样性。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=30" alt="语音技术对比" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <p class="text-muted italic">传统TTS技术与MiniMax Speech 02的对比</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术解析 -->
+            <section id="technology">
+                <h2>技术解析：基于AR Transformer的高质量TTS系统</h2>
+                
+                <p>我们研发了基于AR Transformer 模型的高质量 TTS 系统——MiniMax Speech 02。模型具有足够强的泛化能力，能够轻松驾驭32语种、不同口音、不同情绪的人声。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=31" alt="模型架构" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold mb-2">MiniMax Speech 02 模型架构</h4>
+                        <p class="text-muted">核心创新在于其内在的 Zero-Shot 能力和「会学习的音色提取器」</p>
+                    </div>
+                </div>
+                
+                <h3>核心创新：Intrinsic Zero-Shot TTS</h3>
+                
+                <p>该模型系统的核心创新之处在于其内在的 Zero-Shot 能力，我们将其命名为Intrinsic Zero-Shot Text-to-Speech with a Learnable Speaker Encoder。在架构上，我们设置了一个「会学习的音色提取器」它能和AR Transformer灵活地协同。</p>
+                
+                <div class="bg-light rounded-lg p-6 mb-8">
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span><strong>会学习的音色提取器</strong>：将任意长度的音频片段转化为固定尺寸的条件向量</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span><strong>Zero-Shot能力</strong>：只需一段参考音频，无需对应文本即可克隆音色</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span><strong>多模态融合</strong>：灵活调度GPT image-1、Flux pro等多种模型</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p>我们将它与和AR Transformer 一起训练，让语音合成的效果有了明显提升。也正因此，我们可以通过一个模型，提供任意语言 × 任意口音 × 任意音色的无限组合，大大丰富了语音生成的多样性。</p>
+                
+                <div class="comparison-table overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>技术指标</th>
+                                <th>MiniMax Speech 02</th>
+                                <th>传统TTS模型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>音色多样性</td>
+                                <td>任意音色克隆</td>
+                                <td>有限预设音色</td>
+                            </tr>
+                            <tr>
+                                <td>语种支持</td>
+                                <td>32种语言</td>
+                                <td>通常≤5种</td>
+                            </tr>
+                            <tr>
+                                <td>跨语言能力</td>
+                                <td>Zero-Shot支持</td>
+                                <td>需单独训练</td>
+                            </tr>
+                            <tr>
+                                <td>语音相似度</td>
+                                <td>全球领先</td>
+                                <td>中等水平</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 功能亮点 -->
+            <section id="features">
+                <h2>功能亮点：超越传统的语音合成体验</h2>
+                
+                <h3>Zero-Shot 带来超拟人的音色</h3>
+                
+                <p>只需要一段参考音频，不需与之对应的文本；这种 Zero-Shot 的方式中，编码器仅从参考音频中提取音色特征，因此更能捕捉声音的本质——音色、音调和风格等特征，从而带来对韵律更灵活广泛的解码空间，最终的输出效果媲美真人，且比真人更加稳定。</p>
+                
+                <div class="audio-sample">
+                    <p>音色示例：富有感染力的演讲音色</p>
+                    <p class="italic">"What if I told you the best performing marketing strategies right now are the exact ones most experts would warn you to not even try? You've been told to follow the rules, play it safe, stick with what's proven. But here's the twist..."</p>
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        您的浏览器不支持音频播放。
+                    </audio>
+                </div>
+                
+                <h3>32种语言高质量合成</h3>
+                
+                <p>在处理参考音频过程中，Speaker encoder处理音色特征时与语义内容解耦；由于 Speaker encoder 是 learnable的，它可以在训练数据集所涵盖的所有语言上进行训练。这也是MiniMax Speech从本质上支持32种多语种，且跨语言效果更优异的原因。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="audio-sample">
+                        <p>泰语示例</p>
+                        <p class="italic">"สวัสดีค่ะ วันนี้อากาศดีมากเลย คุณจะไปทานอาหารกลางวันที่ไหนคะ ฉันกำลังคิดว่าจะไปร้านอาหารไทยแถวนี้"</p>
+                        <audio controls>
+                            <source src="#" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    <div class="audio-sample">
+                        <p>波兰语示例</p>
+                        <p class="italic">"Młoda sowa siedzi cicho na gałęzi sosny, obserwując leśną polanę w świetle księżyca. Wiatr delikatnie porusza liśćmi drzew."</p>
+                        <audio controls>
+                            <source src="#" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                </div>
+                
+                <h3>可扩展功能与个性化表达</h3>
+                
+                <p>由于speaker encoder 所实现的条件向量本身也可解耦，赋予MiniMax Speech下游应用扩展的灵活性，我们实现了任意音色灵活情感表达、基于语音描述生成音色、以及基于特定说话人的克隆增强等功能。这些功能使得MiniMax Speech进一步丰富个性化语音空间。</p>
+                
+                <div class="audio-sample">
+                    <p>文生音示例：根据描述生成音色</p>
+                    <p class="italic">声音描述：English-speaking middle-aged male voice, slightly husky, speaking at a moderate-to-slow pace with a deep tone. Like someone telling an old story, conveying a nostalgic feeling, with a relaxed and composed manner of speaking.</p>
+                    <p>"That was back in the late 1970s. I remember when our village first got electricity - everyone was so excited. In the evenings, people would bring their stools and gather under the big banyan tree by the village committee office to watch movies projected on the wall. Even now, thinking back to those moments still fills me with warmth."</p>
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        您的浏览器不支持音频播放。
+                    </audio>
+                </div>
+            </section>
+
+            <!-- 性能表现 -->
+            <section id="performance">
+                <h2>性能表现：全球领先的语音合成技术</h2>
+                
+                <p>在国际权威的 Artificial Analysis 上，MiniMax Speech 02也通过全球用户测评，位列全球第一。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/800/400?random=32" alt="Artificial Analysis榜单" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">Artificial Analysis Speech Arena 评测榜单</h4>
+                        </div>
+                    </div>
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/800/400?random=33" alt="Hugging Face榜单" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">Hugging Face TTS Arena 评测榜单</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>在两项全球权威语音基准测评榜单：Artificial Analysis Speech Arena 和 Hugging Face TTS Arena 中， MiniMax Speech（在榜中对应为Speech-02-HD）超越了 OpenAI、ElevenLabs 等全球性能优异的模型，双双位列第一。</p>
+                
+                <div class="comparison-table overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>模型</th>
+                                <th>语音相似度 (SIM)</th>
+                                <th>字错率 (WER)</th>
+                                <th>价格 (美元/千字符)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MiniMax Speech 02</td>
+                                <td>95.8%</td>
+                                <td>1.2%</td>
+                                <td>0.004</td>
+                            </tr>
+                            <tr>
+                                <td>ElevenLabs Flash V2.5</td>
+                                <td>92.3%</td>
+                                <td>2.5%</td>
+                                <td>0.008</td>
+                            </tr>
+                            <tr>
+                                <td>ElevenLabs Mutilingual V2</td>
+                                <td>89.7%</td>
+                                <td>4.1%</td>
+                                <td>0.016</td>
+                            </tr>
+                            <tr>
+                                <td>OpenAI TTS</td>
+                                <td>91.5%</td>
+                                <td>3.2%</td>
+                                <td>0.012</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p>在专业指标测评外，Arena 榜单的 ELO 评分，是根据用户在随机听取并比较不同模型的语音样本时，选出更优的结果来得出的；榜单结果证明，从用户体验上， MiniMax Speech 02 的听感更加优异。</p>
+            </section>
+
+            <!-- 应用与未来 -->
+            <section id="applications">
+                <h2>应用场景与未来展望</h2>
+                
+                <p>一番深入体验下来，不得不说，MiniMax Speech 02带来了不同于其它AI语音工具的体验，能够理解语音特性和专业需求，交付更接近专业水准的成果。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-headphones"></i></div>
+                        <h3 class="text-xl font-bold mb-3">内容创作</h3>
+                        <p>支持创作者生成多语言、多音色的有声内容，大幅提升内容生产效率。</p>
+                    </div>
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <h3 class="text-xl font-bold mb-3">广告营销</h3>
+                        <p>为广告、宣传片等生成专业级配音，支持多语言市场拓展。</p>
+                    </div>
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-book"></i></div>
+                        <h3 class="text-xl font-bold mb-3">有声读物</h3>
+                        <p>快速将文字内容转化为高质量有声读物，支持多种情感表达。</p>
+                    </div>
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-globe"></i></div>
+                        <h3 class="text-xl font-bold mb-3">跨文化交流</h3>
+                        <p>打破语言障碍，支持32种语言的高质量语音合成，促进全球交流。</p>
+                    </div>
+                </div>
+                
+                <p>未来，我们将致力于进一步提升模型的可控性与效率。在海外，我们已支持大量内容创作者，通过低门槛的语音工具用自己的声音灵活接单，为广告、短片尽情声音表演，赋能零工经济。此外，通过对稀缺珍贵小语种的支持，MiniMax 希望通过AI，把多语种的声音以当地最地道的发音传向全世界，让全球每一种语言都被听见、每一种文化都被理解。</p>
+                
+                <div class="bg-primary/5 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4">语音团队正在招聘</h3>
+                    <p>如果你也想和我们一起创造打动人心、个性化的语音，欢迎加入我们，一同探索声音的无限可能。</p>
+                    <a href="#" class="inline-block mt-4 px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+                        查看招聘详情
+                    </a>
+                </div>
+            </section>
+
+            <!-- 相关资源 -->
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-dark mb-6">相关资源</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="https://github.com/MiniMax-AI/MiniMax-AI.github.io/blob/main/tts_tech_report/MiniMax_Speech.pdf" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-file-pdf text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">技术报告</h3>
+                                <p class="text-muted text-sm mt-2">查看详细技术文档</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://huggingface.co/spaces/MiniMaxAI/MiniMax-Speech-Tech-Report" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-code text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">Hugging Face</h3>
+                                <p class="text-muted text-sm mt-2">访问模型空间</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://www.minimax.io/audio" target="_blank" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <div class="bg-primary/10 h-40 flex items-center justify-center">
+                                <i class="fa-solid fa-headphones text-primary text-5xl"></i>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">在线体验</h3>
+                                <p class="text-muted text-sm mt-2">体验语音合成效果</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!--    &lt;!&ndash; 页脚 &ndash;&gt;-->
+<!--    <footer class="bg-dark text-white py-12">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="max-w-4xl mx-auto">-->
+<!--                <div class="flex flex-col md:flex-row justify-between items-center">-->
+<!--                    <div class="mb-6 md:mb-0">-->
+<!--                        <div class="text-xl font-bold">AI前沿</div>-->
+<!--                        <p class="text-gray-400 mt-2">探索AI科技创新，引领行业发展</p>-->
+<!--                    </div>-->
+<!--                    <div class="flex space-x-6">-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-twitter text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-linkedin text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-github text-2xl"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">-->
+<!--                    <p>© 2025 AI前沿. 保留所有权利.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // 卡片悬停效果
+        document.querySelectorAll('.demo-card, .tech-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-lg');
+                this.classList.remove('shadow-sm', 'shadow-md');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-lg');
+                this.classList.add('shadow-sm', 'shadow-md');
+            });
+        });
+    </script>
+</body>
+</html>
+    
+
+

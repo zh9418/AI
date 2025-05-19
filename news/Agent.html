@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新晋顶流Agent颠覆设计师！Lovart一手实测来了：是该刷屏爆火</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        accent: '#00C19D',
+                        dark: '#1A1A1A',
+                        light: '#F9F9F9',
+                        muted: '#666666'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .article-prose {
+                @apply max-w-4xl mx-auto text-dark/80 leading-relaxed;
+            }
+            .article-prose h2 {
+                @apply text-2xl md:text-3xl font-bold text-dark mt-12 mb-6 scroll-mt-20 border-b border-gray-200 pb-3;
+            }
+            .article-prose h3 {
+                @apply text-xl md:text-2xl font-bold text-dark mt-8 mb-4 scroll-mt-20;
+            }
+            .article-prose p {
+                @apply mb-6;
+            }
+            .article-prose ul {
+                @apply list-disc pl-6 mb-6 space-y-2;
+            }
+            .article-prose ol {
+                @apply list-decimal pl-6 mb-6 space-y-2;
+            }
+            .article-prose a {
+                @apply text-primary hover:underline;
+            }
+            .article-prose blockquote {
+                @apply border-l-4 border-primary pl-4 italic my-6 bg-light rounded-r-lg p-4;
+            }
+            .article-prose img {
+                @apply rounded-lg shadow-md my-8 mx-auto max-w-full transition-transform duration-500 hover:scale-[1.02];
+            }
+            .article-prose table {
+                @apply w-full border-collapse my-8;
+            }
+            .article-prose th, .article-prose td {
+                @apply border border-gray-300 p-3;
+            }
+            .article-prose th {
+                @apply bg-gray-100 font-semibold;
+            }
+            .tech-card {
+                @apply bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1;
+            }
+            .tech-card-icon {
+                @apply text-primary text-3xl mb-4;
+            }
+            .comparison-table {
+                @apply w-full border-collapse my-8;
+            }
+            .comparison-table th, .comparison-table td {
+                @apply border border-gray-300 p-4;
+            }
+            .comparison-table th {
+                @apply bg-gray-100 font-semibold text-center;
+            }
+            .comparison-table td:first-child {
+                @apply font-medium;
+            }
+            .stat-card {
+                @apply bg-light rounded-xl p-6 text-center shadow-sm;
+            }
+            .stat-value {
+                @apply text-3xl font-bold text-primary mb-2;
+            }
+            .stat-label {
+                @apply text-muted;
+            }
+            .demo-card {
+                @apply bg-white rounded-xl overflow-hidden shadow-md mb-6 transition-all duration-300 hover:shadow-lg;
+            }
+            .demo-card img {
+                @apply w-full h-64 object-cover;
+            }
+            .demo-card .content {
+                @apply p-6;
+            }
+            .feature-item {
+                @apply flex items-start mb-4;
+            }
+            .feature-item i {
+                @apply text-primary mt-1 mr-3;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+<!--    &lt;!&ndash; 导航栏 &ndash;&gt;-->
+<!--    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="flex justify-between items-center h-16">-->
+<!--                <div class="flex items-center">-->
+<!--                    <div class="text-primary font-bold text-xl">AI前沿</div>-->
+<!--                </div>-->
+<!--                <nav class="hidden md:flex space-x-8">-->
+<!--                    <a href="#overview" class="text-dark hover:text-primary transition-colors">概览</a>-->
+<!--                    <a href="#features" class="text-dark hover:text-primary transition-colors">功能实测</a>-->
+<!--                    <a href="#technology" class="text-dark hover:text-primary transition-colors">技术揭秘</a>-->
+<!--                    <a href="#application" class="text-dark hover:text-primary transition-colors">应用场景</a>-->
+<!--                </nav>-->
+<!--                <div class="md:hidden">-->
+<!--                    <button id="menu-toggle" class="text-dark hover:text-primary">-->
+<!--                        <i class="fa-solid fa-bars text-xl"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 移动端菜单 &ndash;&gt;-->
+<!--        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">-->
+<!--            <div class="container mx-auto px-4 py-3 space-y-3">-->
+<!--                <a href="#overview" class="block text-dark hover:text-primary transition-colors">概览</a>-->
+<!--                <a href="#features" class="block text-dark hover:text-primary transition-colors">功能实测</a>-->
+<!--                <a href="#technology" class="block text-dark hover:text-primary transition-colors">技术揭秘</a>-->
+<!--                <a href="#application" class="block text-dark hover:text-primary transition-colors">应用场景</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+<!--    &lt;!&ndash; 英雄区域 &ndash;&gt;-->
+<!--    <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-20 md:py-32">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">-->
+<!--            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">Lovart AI设计助手</h1>-->
+<!--            <p class="text-[clamp(1.1rem,2vw,1.5rem)] max-w-3xl mx-auto mb-10 text-white/90">-->
+<!--                专业设计领域的颠覆性AI Agent-->
+<!--            </p>-->
+<!--            <div class="flex flex-wrap justify-center gap-4">-->
+<!--                <a href="#overview" class="px-6 py-3 bg-white text-primary rounded-lg hover:bg-white/90 transition-colors shadow-lg">-->
+<!--                    了解详情-->
+<!--                </a>-->
+<!--                <a href="https://lovart.ai/" target="_blank" class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors">-->
+<!--                    <i class="fa-solid fa-external-link-alt mr-2"></i>访问官网-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <!-- 文章内容区域 -->
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-10 article-prose">
+            <!-- 文章头部信息 -->
+            <div class="text-center mb-12">
+                <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">新晋顶流Agent颠覆设计师！Lovart一手实测来了：是该刷屏爆火</h1>
+                <div class="flex justify-center items-center text-muted mb-6">
+                    <span class="mr-4">发布时间：2025-05-19</span>
+                    <span>来源：量子位</span>
+                </div>
+                <div class="h-1 w-24 bg-primary mx-auto"></div>
+            </div>
+
+            <!-- 概览 -->
+            <section id="overview">
+                <p>又一个Agent火爆全网——一句话搞定专业视觉设计，就连专业设计师大V都在疯狂安利！</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-value">专业级</div>
+                        <div class="stat-label">设计能力</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">多模态</div>
+                        <div class="stat-label">内容生成</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">分图层</div>
+                        <div class="stat-label">编辑功能</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">多模型</div>
+                        <div class="stat-label">融合调度</div>
+                    </div>
+                </div>
+                
+                <p>画风be like：</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=10" alt="Lovart设计作品示例" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <p class="text-muted italic">创作出它们的设计从业者@Ege表示，自己用这个AI设计助手轻松搞定了一整套时装品牌视觉设计方案，而原本他自己一个人需要"花好几天时间"。</p>
+                    </div>
+                </div>
+                
+                <p>还有人用这个Agent做了特斯拉Robotaxi的广告牌，结果发现被马斯克亲自点赞。在官方展示中，炫酷作品还有很多，下面这些海报也都由这个Agent出品：</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=11" alt="设计作品示例1" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=12" alt="设计作品示例2" class="w-full h-48 object-cover">
+                    </div>
+                </div>
+                
+                <p>这个Agent还特别在，支持一系列专业级别的二次编辑，能做到图文分离，分图层编辑。一张平平无奇的饮料图片都能分分钟变身精美宣传图：</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=13" alt="设计作品示例3" class="w-full h-64 object-cover">
+                </div>
+                
+                <p>不卖关子，此Agent名为Lovart，主打海报、品牌VI、Storyboard（剧本、镜头、声画打包生成的故事板）设计。Beta测试版刚上线24小时，申请内测人数就超20000。</p>
+            </section>
+
+            <!-- 功能实测 -->
+            <section id="features">
+                <h2>全方位设计能力实测</h2>
+                
+                <p>打开Lovart，映入眼帘的是一个看似普通的对话界面，但输入指令后，就会发现不简单，左侧变成了一块没有边界、可随意缩放的画布。从初期灵感搭建到中期多方案迭代，直至最终任务交付微调，全部设计流程均可在这一块画布上完成。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=14" alt="Lovart界面" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold mb-2">Lovart工作界面</h4>
+                        <p class="text-muted">左侧为可无限扩展的画布，右侧为对话控制区</p>
+                    </div>
+                </div>
+                
+                <h3>盲盒设计实测</h3>
+                
+                <p>最近对盲盒比较感兴趣，那么首先就让它帮忙设计一组盲盒好了，看看表现如何。只见它迅速拆解prompt理解其中需求，然后自动规划分步骤完成了6个形象的设计。</p>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/400/400?random=15" alt="盲盒设计1" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/400/400?random=16" alt="盲盒设计2" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/400/400?random=17" alt="盲盒设计3" class="w-full h-48 object-cover">
+                    </div>
+                </div>
+                
+                <p>还有隐藏款哦，更精致，同事见了都直呼想要一个。而且查看Lovart的设计过程，它并不是简单的生图，它有自己的一套设计理念。Lovart先构思了设计细节，精细到每个形象都设计了角色特点，还为整个系列命名"Woodland Wizards（木林巫师）"，然后才进行最终的生成。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=18" alt="盲盒系列设计" class="w-full h-64 object-cover">
+                </div>
+                
+                <h3>时尚照片改造</h3>
+                
+                <p>问闺蜜要来街拍照片改造一番。分分钟，"啪"一下，这不时尚杂志封面大女主吗？就算细节处理不好、文字不对也不用怕。敲重点，相比于通用类的Agent，Lovart专门为视觉设计提供了各种专业级的二次编辑功能，可通过Talk-Tab-Tune三种模式进行交互：</p>
+                
+                <div class="bg-light rounded-lg p-6 mb-8">
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span><strong>Talk</strong>：直接在主对话框中用自然语言下达任务</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span><strong>Tab</strong>：点击画板任意选区，指令传送，轻松修改</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-primary mt-1 mr-3"></i>
+                            <span><strong>Tune</strong>：图层内修改</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=19" alt="原图" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">原图</h4>
+                        </div>
+                    </div>
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=20" alt="修改后" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold mb-2">AI改造后</h4>
+                            <p class="text-muted">选中某张图，点击Tab就能针对该图进行二次优化。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>品牌VI设计</h3>
+                
+                <p>随后，我们又发给Lovart一张量子位的Logo图，尝试让它设计一套品牌VI方案。有点意外，Lovart并没有立刻生成，而是在原Logo的基础上又设计了一番，其中有忠实于原Logo的，也有改动大一些的。选择某一个图后，点击下方的"Add to Chat"按钮，告诉它我们的选择，成品出炉，量子位设计师的饭碗不保。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=21" alt="VI设计1" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="demo-card">
+                        <img src="https://picsum.photos/600/400?random=22" alt="VI设计2" class="w-full h-48 object-cover">
+                    </div>
+                </div>
+                
+                <h3>视频分镜生成</h3>
+                
+                <p>除此之外，它还可以用来设计故事板、广告宣传短片。我们上传了一张平平无奇的可乐照片，想让Lovart生成一个宣传广告片，把2块5的可乐喝出25的感觉。Lovart收到指令后吭哧吭哧开始创作，基于此图逐步生成一系列分镜，还生成了BGM。最终它又自动将其组装起来，于是我们就一键得到了：</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=23" alt="视频分镜" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <p class="text-muted">不过，值得一提的是，生成时间有些长，生成海报平均都要等个几分钟，生成短片甚至需要几十分钟。当然，速度慢也是目前Agent产品普遍存在的问题。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术揭秘 -->
+            <section id="technology">
+                <h2>功能揭秘，多模型调度</h2>
+                
+                <p>关于Lovart的功能，背后还有更多细节。首先，Lovart的图片、视频、3D生成能力其实来自于多模型的融合调度。细观其生成过程，就可以发现多种模型的协同工作。</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=24" alt="多模型调度" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <p class="text-muted">根据官方展示，实际上用户可以在Lovart中一站式使用GPT image-1、Flux pro、OpenAI-o3、Gemini Imagen 3、Kling AI、Tripo AI、Suno AI等诸多顶流模型。这些模型统统都集成在这么一块画布上，用户无需来回切换平台和工具，任务下达给Lovart，它就会帮你自动调用。</p>
+                    </div>
+                </div>
+                
+                <p>其次，Lovart内部还构建了一套设计流程，能够将用户的高层设计需求自动拆解为结构化的任务序列，包括风格定义、元素选择、布局设计到最终渲染。这种流程化思维使Lovart能够像专业设计师一样思考和工作，设计者用起来更加native。</p>
+                
+                <div class="comparison-table overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>技术指标</th>
+                                <th>Lovart</th>
+                                <th>传统设计工具</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>设计流程</td>
+                                <td>自动化拆解与执行</td>
+                                <td>手动分步操作</td>
+                            </tr>
+                            <tr>
+                                <td>模型调用</td>
+                                <td>多模型自动调度</td>
+                                <td>手动切换不同工具</td>
+                            </tr>
+                            <tr>
+                                <td>二次编辑</td>
+                                <td>图文分离，分图层编辑</td>
+                                <td>需重新设计</td>
+                            </tr>
+                            <tr>
+                                <td>输出格式</td>
+                                <td>多种格式一键导出</td>
+                                <td>需手动转换格式</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p>在生成之后的一系列高可控性编辑功能背后，依托的是内置于Lovart中的"PS-level"调整工具。其中就包括图层、蒙版、文本微调等，比如图层中，还支持透明度、色调、饱和度、阴影、曝光、对比度等精细调节。最终成果交付，Lovart也能提供PNG、SVG等多样的格式。</p>
+            </section>
+
+            <!-- 应用场景 -->
+            <section id="application">
+                <h2>应用场景与未来展望</h2>
+                
+                <p>一番深入体验下来，不得不说，Lovart带来了不同于其它AI设计工具的体验，能够理解设计流程和专业需求，交付更接近专业水准的成果。不过Lovart的定位似乎并非取代设计师，而是形成一种新的人机协作的关系，它能有效处理重复性工作和基础创意，但高端定制、战略设计思考和品牌核心决策仍需人类设计师参与。</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <h3 class="text-xl font-bold mb-3">市场营销</h3>
+                        <p>在快节奏的营销环境中，Lovart可以在几分钟内生成高质量的新品上市或节庆促销海报，帮助营销团队抢占先机。</p>
+                    </div>
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-shopping-cart"></i></div>
+                        <h3 class="text-xl font-bold mb-3">电商平台</h3>
+                        <p>电商平台需要大量视觉素材，Lovart的批量生成能力更是能显著提高内容创作效率，降低设计成本。</p>
+                    </div>
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-film"></i></div>
+                        <h3 class="text-xl font-bold mb-3">影视制作</h3>
+                        <p>用于故事板设计、场景渲染等，帮助导演和编剧更直观地规划影视作品，提高创作效率。</p>
+                    </div>
+                    <div class="tech-card p-6">
+                        <div class="tech-card-icon"><i class="fa-solid fa-paint-brush"></i></div>
+                        <h3 class="text-xl font-bold mb-3">创意设计</h3>
+                        <p>辅助设计师进行灵感启发、多方案快速迭代，减少重复性工作，让设计师专注于更有价值的创意工作。</p>
+                    </div>
+                </div>
+                
+                <p>关于Lovart背后团队，不少消息在传Lovart是Liblib公司的海外产品，量子位得到其团队答复：Lovart是Liblib海外子公司独立运作的新产品，其主要负责人为王浩帆与Takumi。王浩帆是资深算法工程师、InstantID的核心开发者。该项目还曾经被深度学习三巨头之一Yann LeCun点赞。</p>
+                
+                <p>Lovart团队还直接自曝了，Lovart的品牌VI和视觉延展也都是用Lovart做的：</p>
+                
+                <div class="demo-card">
+                    <img src="https://picsum.photos/800/400?random=25" alt="Lovart品牌VI" class="w-full h-64 object-cover">
+                </div>
+                
+                <p>你觉得它还可以用在哪些场景中？欢迎留言分享。对Lovart感兴趣的友友不妨亲自上手试试，LovartAI官网可申请内测。</p>
+            </section>
+
+            <!-- 相关推荐 -->
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-dark mb-6">相关推荐</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="#" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <img src="https://picsum.photos/400/250?random=30" alt="相关文章" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">AI设计工具大比拼</h3>
+                                <p class="text-muted text-sm mt-2">各大AI设计工具功能对比分析</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <img src="https://picsum.photos/400/250?random=31" alt="相关文章" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">设计师如何与AI协作</h3>
+                                <p class="text-muted text-sm mt-2">探讨AI时代设计师的转型与发展</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                            <img src="https://picsum.photos/400/250?random=32" alt="相关文章" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="p-4">
+                                <h3 class="font-bold text-dark group-hover:text-primary transition-colors">AI生成内容的版权问题</h3>
+                                <p class="text-muted text-sm mt-2">解析AI创作内容的知识产权归属</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<!--    &lt;!&ndash; 页脚 &ndash;&gt;-->
+<!--    <footer class="bg-dark text-white py-12">-->
+<!--        <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--            <div class="max-w-4xl mx-auto">-->
+<!--                <div class="flex flex-col md:flex-row justify-between items-center">-->
+<!--                    <div class="mb-6 md:mb-0">-->
+<!--                        <div class="text-xl font-bold">AI前沿</div>-->
+<!--                        <p class="text-gray-400 mt-2">探索AI科技创新，引领行业发展</p>-->
+<!--                    </div>-->
+<!--                    <div class="flex space-x-6">-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-twitter text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-linkedin text-2xl"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa-brands fa-github text-2xl"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">-->
+<!--                    <p>© 2025 AI前沿. 保留所有权利.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // 卡片悬停效果
+        document.querySelectorAll('.demo-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-lg');
+                this.classList.remove('shadow-md');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-lg');
+                this.classList.add('shadow-md');
+            });
+        });
+    </script>
+</body>
+</html>
+    
+
+
