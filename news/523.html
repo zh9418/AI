@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 4 系列模型发布 - 编程能力惊艳业界</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36BFFA',
+                        accent: '#7B61FF',
+                        dark: '#1D2129',
+                        'gray-light': '#F2F3F5',
+                        'gray-medium': '#C9CDD4',
+                        'gray-dark': '#86909C'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .article-card-shadow {
+                box-shadow: 0 10px 30px -5px rgba(22, 93, 255, 0.1);
+            }
+            .gradient-overlay {
+                background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.02);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+                100% { transform: translateY(0px); }
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-light text-dark">
+<!--    &lt;!&ndash; 导航栏 &ndash;&gt;-->
+<!--    <header class="fixed w-full bg-white/80 backdrop-blur-md z-50 transition-all duration-300" id="navbar">-->
+<!--        <div class="container mx-auto px-4 py-3 flex justify-between items-center">-->
+<!--            <a href="#" class="flex items-center space-x-2">-->
+<!--                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">-->
+<!--                    <i class="fa fa-robot text-white text-xl"></i>-->
+<!--                </div>-->
+<!--                <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">AI前沿</span>-->
+<!--            </a>-->
+
+<!--            <nav class="hidden md:flex items-center space-x-8">-->
+<!--                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">首页</a>-->
+<!--                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">技术</a>-->
+<!--                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">产品</a>-->
+<!--                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">资讯</a>-->
+<!--                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">关于</a>-->
+<!--            </nav>-->
+
+<!--            <div class="flex items-center space-x-4">-->
+<!--                <button class="hidden md:block px-6 py-2 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">-->
+<!--                    订阅更新-->
+<!--                </button>-->
+<!--                <button class="md:hidden text-dark text-xl">-->
+<!--                    <i class="fa fa-bars"></i>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+    <!-- 英雄区域 -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-primary/5 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto text-center">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6">
+                    <i class="fa fa-bolt mr-2"></i>最新资讯
+                </span>
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight mb-6 text-balance">
+                    Anthropic发布Claude 4系列模型<br>编程能力惊艳业界
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-dark max-w-3xl mx-auto mb-10">
+                    美东时间5月22日，Anthropic在首届开发者大会上推出Claude 4系列模型，带来革命性编程能力提升
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-dark">
+                    <span class="flex items-center"><i class="fa fa-calendar mr-2"></i> 2025-05-23</span>
+                    <span class="flex items-center"><i class="fa fa-user mr-2"></i> 科技编辑</span>
+                    <span class="flex items-center"><i class="fa fa-clock mr-2"></i> 阅读时间: 8分钟</span>
+                </div>
+            </div>
+
+<!--            &lt;!&ndash; 主图 &ndash;&gt;-->
+<!--            <div class="mt-12 max-w-5xl mx-auto relative">-->
+<!--                <div class="rounded-2xl overflow-hidden shadow-2xl hover-scale">-->
+<!--                    <img src="https://picsum.photos/id/1/1200/600" alt="Claude 4系列模型发布" class="w-full h-auto">-->
+<!--                </div>-->
+<!--                <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-accent rounded-full flex items-center justify-center shadow-lg animate-float hidden md:block">-->
+<!--                    <span class="text-white font-bold text-xl">NEW</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <!-- 文章内容区域 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- 文章正文 -->
+                <article class="space-y-8 text-lg leading-relaxed">
+                    <p class="text-xl">
+                        美东时间 5 月 22 日，<strong class="text-primary">Anthropic</strong> 在公司首届 "Code with Claude" 开发者大会上推出了 Claude 4 系列的两款全新模型：<strong class="text-primary">Claude Opus 4</strong> 和 <strong class="text-primary">Claude Sonnet 4</strong>。Anthropic 将 Claude Opus 4 称为 "公司迄今最强大的模型，也是全球最佳编程模型"，而 Claude Sonnet 4 是 Claude Sonnet 3.7 版的重大升级，提供卓越的编码和推理能力，同时更精确地响应用户指令。
+                    </p>
+
+                    <div class="bg-gray-light rounded-xl p-6 md:p-8 border-l-4 border-primary">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fa fa-trophy text-primary mr-3"></i>关键亮点
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>Claude Opus 4 在 SWE-bench 基准测试中准确度达 72.5%</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>Claude Sonnet 4 在 SWE-bench 上达到 72.7%，较前代提升 10.4%</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>支持 "扩展思考与工具使用" 功能，可交替进行推理和工具调用</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>Opus 4 可连续工作7小时保持稳定性能，适合复杂编码任务</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mt-12 mb-6 text-dark">性能对比：大幅超越前代</h2>
+                    <p>
+                        在 SWE-bench 软件工程任务基准测试中，Opus 4 得到 72.5% 的准确度成绩，在 Terminal-bench 上达到 43.2%。Sonnet 4 则在 SWE-bench 上达到 72.7%，相比得到 62.3% 成绩的 Sonnet 3.7 版本有显著提升。
+                    </p>
+
+                    <!-- 性能对比图表 -->
+                    <div class="bg-white rounded-xl p-6 shadow-lg article-card-shadow hover-scale">
+                        <h3 class="text-xl font-bold mb-4">模型性能对比</h3>
+                        <div class="w-full h-80">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <p>
+                        Opus 4 和 Sonnet 4 都采用了混合模式设计，既可提供几乎即时的回应，也能进行更深入的推理思考，即扩张思维。在 Anthropic 的 Pro、Max、Team 和 Enterprise Claude 套餐中包含了上述两种模型的能力，Sonnet 4 模型也面向免费用户开放。新模型均可在 Anthropic API、Amazon Bedrock 和 Google Cloud 的 Vertex AI 上使用。
+                    </p>
+
+                    <h2 class="text-3xl font-bold mt-12 mb-6 text-dark">持久专注：Opus 4 的突破性能力</h2>
+                    <p>
+                        Opus 4 最引人注目的特点是其惊人的持续工作能力。据 Anthropic 介绍，该模型能够在需要专注努力和数千步骤的长时间任务中保持稳定表现，可以连续工作数小时。日本电商巨头乐天（Rakuten）已验证了 Opus 4 的能力，在乐天要求严格的一项开源重构任务中，该模型独立运行了 7 小时，且这期间保持稳定的性能。
+                    </p>
+
+                    <!-- 图片展示 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="rounded-xl overflow-hidden shadow-lg article-card-shadow hover-scale">
+                            <img src="https://picsum.photos/id/20/600/400" alt="Claude 4 编程演示" class="w-full h-64 object-cover">
+                            <div class="p-4 bg-white">
+                                <h4 class="font-semibold">Claude 4 编程演示</h4>
+                                <p class="text-sm text-gray-dark">展示Claude 4在复杂编码任务中的表现</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl overflow-hidden shadow-lg article-card-shadow hover-scale">
+                            <img src="https://picsum.photos/id/48/600/400" alt="模型架构对比" class="w-full h-64 object-cover">
+                            <div class="p-4 bg-white">
+                                <h4 class="font-semibold">模型架构对比</h4>
+                                <p class="text-sm text-gray-dark">Claude 4与前代模型的架构改进</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-6">
+                        这种持久的注意力和工作能力使 Opus 4 特别适合复杂的编码和问题解决场景。代码编辑平台 Cursor 称，Opus 4 为 "编程领域的最新技术，在复杂代码库理解方面实现了飞跃"。编程平台 Replit 表示，在跨多个文件的复杂更改方面，Opus 4 取得 "显著改进"。
+                    </p>
+
+                    <h2 class="text-3xl font-bold mt-12 mb-6 text-dark">扩展思考与工具使用</h2>
+                    <p>
+                        两款新模型都引入了 "扩展思考与工具使用" 功能（测试版），允许 Claude 在思考过程中使用网络搜索等工具，在推理和工具使用之间交替以改进回应。这些模型还能并行使用工具，更精确地遵循指令，并在开发者授予本地文件访问权限时展示显著改进的记忆能力。特别值得注意的是，Opus 4 在记忆能力方面大幅超越了所有以前的模型。
+                    </p>
+
+                    <!-- 功能演示图 -->
+                    <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-6 md:p-8 mt-8 relative overflow-hidden">
+                        <div class="absolute -right-20 -top-20 w-64 h-64 bg-accent/10 rounded-full"></div>
+                        <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-primary/10 rounded-full"></div>
+
+                        <h3 class="text-2xl font-bold mb-6 relative">扩展思考与工具使用流程</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-lg hover-scale">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                                    <i class="fa fa-search text-primary text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">1. 问题理解</h4>
+                                <p class="text-gray-dark">深入分析用户问题，确定所需工具和步骤</p>
+                            </div>
+
+                            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-lg hover-scale">
+                                <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+                                    <i class="fa fa-cogs text-secondary text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">2. 工具调用</h4>
+                                <p class="text-gray-dark">智能调用网络搜索、代码分析等外部工具</p>
+                            </div>
+
+                            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-lg hover-scale">
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                                    <i class="fa fa-lightbulb text-accent text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">3. 综合推理</h4>
+                                <p class="text-gray-dark">整合工具结果，形成连贯、准确的解决方案</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-6">
+                        当开发者构建的应用程序提供 Claude 本地文件访问权限时，Opus 4 能够创建和维护 "记忆文件" 来存储关键信息，这解锁了更好的长期任务意识、连贯性和代理任务性能。
+                    </p>
+
+                    <h2 class="text-3xl font-bold mt-12 mb-6 text-dark">Claude Code 全面推出</h2>
+                    <p>
+                        在模型发布的同时，Anthropic 宣布，在测试收到 "广泛的积极反馈" 后，<strong class="text-primary">Claude Code</strong> 正式全面推出。现在通过 GitHub Actions 支持后台任务，并与 VS Code 和 JetBrains 原生集成，直接在开发者文件中显示编辑，实现无缝结对编程。Claude Code 由 Opus 4 和 Sonnet 4 提供支持，让 Anthropic 的大语言模型（LLM）拥有更多功能，因为它可以编写代码来分析数据。
+                    </p>
+
+                    <!-- 集成演示图 -->
+                    <div class="bg-white rounded-xl p-6 md:p-8 shadow-lg article-card-shadow mt-8">
+                        <h3 class="text-2xl font-bold mb-6">开发工具集成</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="flex flex-col items-center justify-center p-4 border border-gray-medium rounded-lg hover:border-primary transition-colors">
+                                <i class="fa-brands fa-github text-4xl mb-3 text-gray-dark hover:text-primary transition-colors"></i>
+                                <span class="font-medium">GitHub</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-4 border border-gray-medium rounded-lg hover:border-primary transition-colors">
+                                <i class="fa-brands fa-visual-studio text-4xl mb-3 text-gray-dark hover:text-primary transition-colors"></i>
+                                <span class="font-medium">VS Code</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-4 border border-gray-medium rounded-lg hover:border-primary transition-colors">
+                                <i class="fa-brands fa-java text-4xl mb-3 text-gray-dark hover:text-primary transition-colors"></i>
+                                <span class="font-medium">JetBrains</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-4 border border-gray-medium rounded-lg hover:border-primary transition-colors">
+                                <i class="fa-brands fa-git text-4xl mb-3 text-gray-dark hover:text-primary transition-colors"></i>
+                                <span class="font-medium">Git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mt-12 mb-6 text-dark">AI竞争格局升温</h2>
+                    <p>
+                        Anthropic 的新发布加剧了与 OpenAI、Google 在顶级模型领域的竞争。本周稍早，微软宣布了新的编码智能体，并与马斯克旗下 xAI 的 Grok 模型合作，将 Grok 纳入微软云平台；谷歌加速将 AI 智能体融入公司服务，推出 AI 模式的新型搜索功能；OpenAI 宣布了 65 亿美元的交易，将收购由 "iPhone 之父"、前苹果设计总监 Jony Ive 创立的 AI 硬件初创公司 io。这表明 Anthropic、Google 和 OpenAI 之间的 "最佳前沿模型" 竞争正在升温。
+                    </p>
+
+                    <!-- 市场竞争图 -->
+                    <div class="bg-white rounded-xl p-6 md:p-8 shadow-lg article-card-shadow mt-8">
+                        <h3 class="text-2xl font-bold mb-6">主要AI模型对比</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-[640px]">
+                                <thead>
+                                    <tr class="bg-gray-light">
+                                        <th class="py-3 px-4 text-left font-semibold">模型</th>
+                                        <th class="py-3 px-4 text-left font-semibold">SWE-bench 准确率</th>
+                                        <th class="py-3 px-4 text-left font-semibold">长时任务能力</th>
+                                        <th class="py-3 px-4 text-left font-semibold">工具使用</th>
+                                        <th class="py-3 px-4 text-left font-semibold">可用平台</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-medium">
+                                        <td class="py-3 px-4 font-medium">Claude Opus 4</td>
+                                        <td class="py-3 px-4">72.5%</td>
+                                        <td class="py-3 px-4">7小时持续工作</td>
+                                        <td class="py-3 px-4">支持并行调用</td>
+                                        <td class="py-3 px-4">Anthropic, AWS, Google</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-medium">
+                                        <td class="py-3 px-4 font-medium">Claude Sonnet 4</td>
+                                        <td class="py-3 px-4">72.7%</td>
+                                        <td class="py-3 px-4">5小时持续工作</td>
+                                        <td class="py-3 px-4">支持交替调用</td>
+                                        <td class="py-3 px-4">Anthropic, AWS, Google</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-medium">
+                                        <td class="py-3 px-4 font-medium">GPT-4o</td>
+                                        <td class="py-3 px-4">68.2%</td>
+                                        <td class="py-3 px-4">3小时持续工作</td>
+                                        <td class="py-3 px-4">基础支持</td>
+                                        <td class="py-3 px-4">OpenAI, Azure</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-medium">Gemini Ultra</td>
+                                        <td class="py-3 px-4">65.9%</td>
+                                        <td class="py-3 px-4">2小时持续工作</td>
+                                        <td class="py-3 px-4">基础支持</td>
+                                        <td class="py-3 px-4">Google, Vertex AI</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <p class="mt-6">
+                        对投资者而言，Claude 4 系列的推出标志着 AI 能力的一个新纪元。特别是在编程领域，Anthropic 声称已经取得了领先地位，这可能对软件开发行业产生深远影响。GitHub 已表示 Claude Sonnet 4 将成为 GitHub Copilot 中新编码代理的基础模型，这进一步验证了其能力。随着 AI 竞争的加剧，投资者需要重新评估行业格局，尤其是 Anthropic 相对于 OpenAI 和 Google 等竞争对手的地位。
+                    </p>
+                </article>
+
+                <!-- 作者信息 -->
+                <div class="mt-16 pt-8 border-t border-gray-medium">
+                    <div class="flex items-center space-x-4">
+                        <img src="https://picsum.photos/id/64/100/100" alt="作者头像" class="w-16 h-16 rounded-full object-cover">
+                        <div>
+                            <h3 class="font-bold text-xl">科技编辑</h3>
+                            <p class="text-gray-dark">专注于人工智能、前沿技术领域的报道与分析</p>
+                            <div class="flex space-x-3 mt-2">
+                                <a href="#" class="text-gray-dark hover:text-primary transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#" class="text-gray-dark hover:text-primary transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-dark hover:text-primary transition-colors"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 相关文章 -->
+                <div class="mt-16">
+                    <h3 class="text-2xl font-bold mb-8">相关阅读</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <a href="#" class="block group">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg article-card-shadow hover-scale">
+                                <img src="https://picsum.photos/id/180/600/400" alt="AI编程助手对比" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="p-5">
+                                    <h4 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">2025年十大AI编程助手全面测评</h4>
+                                    <p class="text-gray-dark text-sm mb-4 line-clamp-2">深入对比当前市场上最受欢迎的AI编程工具，评估其代码生成、调试和学习能力</p>
+                                    <div class="flex items-center text-xs text-gray-dark">
+                                        <span><i class="fa fa-calendar mr-1"></i> 2025-05-15</span>
+                                        <span class="mx-2">•</span>
+                                        <span><i class="fa fa-eye mr-1"></i> 12,456</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="block group">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-lg article-card-shadow hover-scale">
+                                <img src="https://picsum.photos/id/119/600/400" alt="AI模型竞争" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="p-5">
+                                    <h4 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">AI模型军备竞赛：谁将主导未来？</h4>
+                                    <p class="text-gray-dark text-sm mb-4 line-clamp-2">分析OpenAI、Google、Anthropic等科技巨头在大模型领域的竞争态势与技术突破</p>
+                                    <div class="flex items-center text-xs text-gray-dark">
