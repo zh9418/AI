@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微软发布地球系统AI预报模型Aurora - 科技新闻</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#0E42B3',
+                        accent: '#36BFFA',
+                        dark: '#1D2939',
+                        'dark-blue': '#0F172A',
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .bg-gradient-tech {
+                background: linear-gradient(135deg, #165DFF 0%, #0E42B3 100%);
+            }
+            .transition-transform-opacity {
+                transition-property: transform, opacity;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="font-inter bg-light text-dark">
+    <!-- 导航栏 -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-gradient-tech flex items-center justify-center">
+                    <i class="fa fa-globe text-white text-xl"></i>
+                </div>
+                <span class="text-xl font-bold text-dark">TechInsight</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">首页</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">科技</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">AI</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">环境</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium">关于</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-dark text-2xl" id="menuBtn">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-transform-opacity invisible" id="mobileMenu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium py-2 border-b border-gray-100">首页</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium py-2 border-b border-gray-100">科技</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium py-2 border-b border-gray-100">AI</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium py-2 border-b border-gray-100">环境</a>
+                <a href="#" class="text-dark hover:text-primary transition-colors font-medium py-2">关于</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <!-- 文章标题区 -->
+        <section class="mb-12 text-center">
+            <div class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-medium text-sm mb-4">科技前沿</div>
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-dark leading-tight mb-4 text-balance">微软发布地球系统AI预报模型Aurora 引领气象预测新时代</h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto mb-6">革命性AI模型在气象预测领域取得突破性进展，大幅提升预报准确性与效率</p>
+            <div class="flex items-center justify-center space-x-4 text-gray-500 text-sm">
+                <span>2025年5月23日</span>
+                <span>•</span>
+                <span>科技编辑团队</span>
+                <span>•</span>
+                <span>阅读时间: 8分钟</span>
+            </div>
+        </section>
+        
+        <!-- 文章特色图 -->
+        <section class="mb-12 rounded-2xl overflow-hidden shadow-xl">
+            <img src="https://picsum.photos/id/1048/1200/600" alt="微软Aurora地球系统AI预报模型" class="w-full h-auto object-cover">
+            <div class="bg-dark-blue text-white p-6">
+                <p class="italic">Aurora模型通过分析大量地球物理数据，能够预测多种气象现象和环境变化</p>
+            </div>
+        </section>
+        
+        <!-- 文章内容 -->
+        <section class="prose prose-lg max-w-4xl mx-auto mb-16">
+            <p>近日，微软正式发布了其研发的地球系统AI预报模型 ——Aurora，这一创新性的模型在气象预测及地球系统研究领域掀起了新的波澜。Aurora经过超过100万小时的多样化地球物理数据训练，在高分辨率天气预报以及空气质量、热带气旋路径和海浪动力学等关键领域的预报中展现出卓越性能，超越了现有的地球系统预报水平。相关研究成果已于5月21日发表在《自然》期刊上。</p>
+            
+            <p>地球系统预报对于人类应对自然灾害、规划生产生活以及理解地球环境变化至关重要。传统的地球系统预报依赖基于数十年数据构建的复杂模型，这些模型不仅对算力要求极高，通常需要超级计算机的支持，而且维护成本高昂，需要专业的大型团队来保障其运行。AI技术的兴起为地球系统预报领域带来了新的曙光，微软的Aurora模型正是这一趋势下的杰出代表。</p>
+            
+            <!-- 模型架构图解 -->
+            <div class="my-12 bg-white rounded-xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold mb-4 text-center">Aurora模型架构</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 rounded-lg p-5 text-center transform transition-all hover:scale-105">
+                        <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-database text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">编码器</h4>
+                        <p class="text-gray-600">负责将异构的输入数据转换为通用的潜在三维表示</p>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-5 text-center transform transition-all hover:scale-105">
+                        <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-cogs text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">处理器</h4>
+                        <p class="text-gray-600">利用3D Swin Transformer技术使表示能够随时间向前演化</p>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-5 text-center transform transition-all hover:scale-105">
+                        <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-line-chart text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">解码器</h4>
+                        <p class="text-gray-600">将标准三维表示转换回具体的物理预测</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Aurora是一个拥有13亿参数的地球系统基础模型，其架构设计精妙，由编码器、处理器和解码器三部分组成。编码器负责将异构的输入数据转换为通用的潜在三维表示，处理器利用3D Swin Transformer技术使这种表示能够随时间向前演化，解码器则将标准三维表示转换回具体的物理预测。通过对大量多样化数据进行预训练，并针对特定任务进行微调，Aurora学会了捕捉大气中的复杂模式和结构，即便在数据有限的情况下，也能做出出色的预测。</p>
+            
+            <!-- 性能对比图表 -->
+            <div class="my-12 bg-white rounded-xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold mb-6 text-center">Aurora与传统模型性能对比</h3>
+                <div class="h-80">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+            
+            <p>在实际表现中，Aurora成绩斐然。在热带气旋路径预测方面，平均而言，它在北大西洋和东太平洋的预测性能比其他7个主要预报中心高出20%，在西北太平洋上高出18%，在澳大利亚地区高出24%。例如，它准确预测到了“杜苏芮”将在菲律宾北部登陆，为当地的防灾减灾工作争取了宝贵的时间。在10天天气预报任务中，Aurora在分辨率为0.1°（赤道处约11公里）的情况下，达到了92%的目标准确率，超越了最先进的数值模型，且在极端事件的预测性能上也有显著提升。此外，在分辨率为0.4°的5天全球空气污染预报中，Aurora在74%的目标上优于资源密集型的数值大气化学模拟；在分辨率为0.25°的10天全球海浪预报中，在86%的目标上超过了昂贵的数值模型。</p>
+            
+            <!-- 应用领域卡片 -->
+            <div class="my-12 grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/1019/600/400" alt="灾害预测" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">灾害预测与应对</h3>
+                        <p class="text-gray-600">Aurora能够提前预测飓风、洪水和野火等极端天气事件，帮助社区做好准备，减少损失。</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/1025/600/400" alt="环境保护" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">环境保护与研究</h3>
+                        <p class="text-gray-600">模型可用于监测空气质量、预测海洋环流变化和追踪植被生长，支持环境保护工作。</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/1071/600/400" alt="农业生产" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">农业生产优化</h3>
+                        <p class="text-gray-600">通过预测季节性天气和作物生长条件，Aurora可以帮助农民优化种植决策，提高产量。</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://picsum.photos/id/1059/600/400" alt="能源管理" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">能源管理与规划</h3>
+                        <p class="text-gray-600">准确预测风能和太阳能资源，有助于优化可再生能源的生产和分配，推动可持续发展。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>不仅如此，Aurora在算力成本和开发周期方面也具有明显优势。与传统的数值天气预报模型相比，它的计算成本大幅降低。从开发周期来看，目前开发基线模型通常需要数年时间，而训练Aurora仅耗时4 - 8周，这得益于数十年来传统技术积累的数据。如此快速的开发进度使得Aurora能够更及时地响应地球系统变化，为研究人员和决策者提供更具时效性的信息。</p>
+            
+            <p>微软研究团队表示，Aurora是一个具有广泛应用潜力的地球系统基础模型，经过改造后，有望用于天气预报之外的众多领域，如预测海洋环流、局部和区域天气、季节性天气、植被生长和物候、洪水和野火等极端天气形态、授粉模式、农业生产力、可再生能源生产和海冰范围等。它的出现代表了高效地球系统预报的一次重大进展，为更广泛地获取高质量的气候和天气信息开辟了新的途径，显示出AI技术在地球系统科学领域的巨大变革潜力。</p>
+            
+            <p>随着Aurora的发布，气象预测和地球系统研究领域或将迎来新的发展阶段。未来，它可能会与更多领域深度融合，为人类应对气候变化、保障生命财产安全以及实现可持续发展提供强有力的技术支持。</p>
+        </section>
+        
+        <!-- 专家观点 -->
+        <section class="max-w-4xl mx-auto mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">专家观点</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/id/1005/100/100" alt="李明教授" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-lg">李明教授</h4>
+                            <p class="text-gray-500">气象学专家，清华大学</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Aurora的出现标志着气象预测领域的一次重大突破。其在热带气旋路径预测上的卓越表现，将为沿海地区的防灾减灾工作提供前所未有的支持。"</p>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/id/1012/100/100" alt="Sarah Johnson博士" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-lg">Sarah Johnson博士</h4>
+                            <p class="text-gray-500">气候科学家，NASA</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"作为一名长期从事气候模型研究的科学家，我对Aurora的性能印象深刻。它不仅提高了预测准确性，而且大幅缩短了开发周期，这将加速我们对气候变化的理解和应对。"</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 相关资源 -->
+        <section class="max-w-4xl mx-auto mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8">相关资源</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="#" class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105 hover:shadow-xl">
+                    <div class="h-40 overflow-hidden">
+                        <img src="https://picsum.photos/id/1024/600/400" alt="自然期刊论文" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">《自然》期刊论文</h3>
+                        <p class="text-gray-600 text-sm mb-3">微软Aurora模型的详细技术说明</p>
+                        <span class="text-primary font-medium text-sm flex items-center">
+                            阅读更多 <i class="fa fa-arrow-right ml-1"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="#" class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105 hover:shadow-xl">
+                    <div class="h-40 overflow-hidden">
+                        <img src="https://picsum.photos/id/1070/600/400" alt="Aurora模型演示" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">Aurora模型演示</h3>
+                        <p class="text-gray-600 text-sm mb-3">观看模型如何预测极端天气事件</p>
+                        <span class="text-primary font-medium text-sm flex items-center">
+                            观看视频 <i class="fa fa-arrow-right ml-1"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="#" class="bg-white rounded-xl overflow-hidden shadow-lg transform transition-all hover:scale-105 hover:shadow-xl">
+                    <div class="h-40 overflow-hidden">
+                        <img src="https://picsum.photos/id/1040/600/400" alt="气候数据可视化" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">气候数据可视化</h3>
+                        <p class="text-gray-600 text-sm mb-3">探索Aurora生成的全球气候预测数据</p>
+                        <span class="text-primary font-medium text-sm flex items-center">
+                            探索数据 <i class="fa fa-arrow-right ml-1"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 评论区 -->
+        <section class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8">评论区</h2>
+            <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                <h3 class="text-lg font-bold mb-4">发表评论</h3>
+                <form>
+                    <div class="mb-4">
+                        <textarea placeholder="分享你的想法..." class="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-none" rows="4"></textarea>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-3 sm:space-y-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="anonymous" class="mr-2">
+                            <label for="anonymous" class="text-sm text-gray-600">匿名评论</label>
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-lg transition-colors">提交评论</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 评论列表 -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-3">
+                        <img src="https://picsum.photos/id/1027/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <div>
+                            <h4 class="font-bold">王小明</h4>
+                            <p class="text-gray-500 text-sm">3天前</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">这篇文章让我对AI在气象预测中的应用有了全新的认识。Aurora模型的出现确实是一个里程碑式的突破，期待它能在实际应用中发挥更大的作用。</p>
+                    <div class="mt-4 flex items-center text-sm">
+                        <button class="text-gray-500 hover:text-primary flex items-center mr-4">
+                            <i class="fa fa-thumbs-up mr-1"></i> 24
+                        </button>
+                        <button class="text-gray-500 hover:text-primary flex items-center">
+                            <i class="fa fa-reply mr-1"></i> 回复
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-3">
+                        <img src="https://picsum.photos/id/1025/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <div>
+                            <h4 class="font-bold">李华</h4>
+                            <p class="text-gray-500 text-sm">2天前</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">作为一名从事气象工作多年的专业人员，我非常关注AI在这个领域的发展。Aurora模型在热带气旋预测上的优势确实令人印象深刻，希望能尽快看到它在全球范围内的应用。</p>
+                    <div class="mt-4 flex items-center text-sm">
+                        <button class="text-gray-500 hover:text-primary flex items-center mr-4">
+                            <i class="fa fa-thumbs-up mr-1"></i> 18
+                        </button>
+                        <button class="text-gray-500 hover:text-primary flex items-center">
+                            <i class="fa fa-reply mr-1"></i> 回复
+                        </button>
+                    </div>
+                    
+                    <!-- 回复 -->
+                    <div class="mt-4 ml-6 p-4 bg-gray-50 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <img src="https://picsum.photos/id/1001/100/100" alt="作者头像" class="w-8 h-8 rounded-full object-cover mr-2">
+                            <div>
+                                <h5 class="font-medium text-sm">科技编辑团队</h5>
+                                <p class="text-gray-500 text-xs">1天前</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-sm">感谢您的专业见解！微软正在与全球气象机构合作，推动Aurora模型的实际应用，相信很快就会在更多地区看到它的身影。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<!--    &lt;!&ndash; 页脚 &ndash;&gt;-->
+<!--    <footer class="bg-dark-blue text-white py-12">-->
+<!--        <div class="container mx-auto px-4">-->
+<!--            <div class="grid md:grid-cols-4 gap-8 mb-8">-->
+<!--                <div>-->
+<!--                    <div class="flex items-center space-x-2 mb-4">-->
+<!--                        <div class="w-10 h-10 rounded-lg bg-gradient-tech flex items-center justify-center">-->
+<!--                            <i class="fa fa-globe text-white text-xl"></i>-->
+<!--                        </div>-->
+<!--                        <span class="text-xl font-bold">TechInsight</span>-->
+<!--                    </div>-->
+<!--                    <p class="text-gray-400 mb-4">提供最新、最深入的科技资讯和前沿技术分析</p>-->
+<!--                    <div class="flex space-x-4">-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa fa-weibo"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa fa-wechat"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa fa-twitter"></i>-->
+<!--                        </a>-->
+<!--                        <a href="#" class="text-gray-400 hover:text-white transition-colors">-->
+<!--                            <i class="fa fa-linkedin"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <h4 class="text-lg font-bold mb-4">栏目导航</h4>-->
+<!--                    <ul class="space-y-2">-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">科技要闻</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AI与机器学习</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">环境科技</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">前沿研究</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">企业动态</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <h4 class="text-lg font-bold mb-4">热门专题</h4>-->
+<!--                    <ul class="space-y-2">-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">气候变化与AI</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">全球防灾减灾</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">可持续发展</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">绿色能源革命</a></li>-->
+<!--                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">数字孪生技术</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <h4 class="text-lg font-bold mb-4">订阅资讯</h4>-->
+<!--                    <p class="text-gray-400 mb-4">获取最新科技资讯和深度分析</p>-->
+<!--                    <form class="flex">-->
+<!--                        <input type="email" placeholder="输入您的邮箱" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark">-->
+<!--                        <button type="submit" class="bg-primary hover:bg-secondary px-4 py-2 rounded-r-lg transition-colors">-->
+<!--                            <i class="fa fa-paper-plane"></i>-->
+<!--                        </button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">-->
+<!--                <p>© 2025 TechInsight. 保留所有权利。</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('py-3');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-3');
+            }
+        });
+        
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        
+        menuBtn.addEventListener('click', () => {
+            if (!menuOpen) {
+                menuBtn.innerHTML = '<i class="fa fa-times"></i>';
+                mobileMenu.classList.remove('-translate-y-full', 'opacity-0', 'invisible');
+                mobileMenu.classList.add('translate-y-0', 'opacity-100', 'visible');
+                menuOpen = true;
+            } else {
+                menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+                mobileMenu.classList.add('-translate-y-full', 'opacity-0', 'invisible');
+                mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'visible');
+                menuOpen = false;
+            }
+        });
+        
+        // 性能对比图表
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['热带气旋路径预测', '10天天气预报', '5天空气污染预报', '10天海浪预报'],
+                    datasets: [
+                        {
+                            label: 'Aurora模型',
+                            data: [92, 92, 74, 86],
+                            backgroundColor: '#165DFF',
+                            borderRadius: 6
+                        },
+                        {
+                            label: '传统数值模型',
+                            data: [75, 85, 65, 78],
+                            backgroundColor: '#94A3B8',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 评论区提交按钮效果
+        document.querySelectorAll('button[type="submit"]').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 提交中...';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fa fa-check mr-2"></i> 提交成功!';
+                    this.classList.remove('bg-primary');
+                    this.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = '提交评论';
+                        this.classList.add('bg-primary');
+                        this.classList.remove('bg-green-600');
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
+    
